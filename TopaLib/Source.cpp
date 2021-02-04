@@ -1,5 +1,5 @@
 #include <iostream>
 
-void func() {
+int main() {
 	printf("Helloworld\n");
 }
