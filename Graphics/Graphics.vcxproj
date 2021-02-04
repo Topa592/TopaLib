@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{17a164ad-5f1b-4e7e-8ba5-ca94dd942ac2}</ProjectGuid>
-    <RootNamespace>TopaLib</RootNamespace>
+    <ProjectGuid>{2521a05b-bac0-4d86-b6b7-79ecf6f59a04}</ProjectGuid>
+    <RootNamespace>Graphics</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,15 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClInclude Include="Graphics.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="All.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Graphics\Graphics.vcxproj">
-      <Project>{2521a05b-bac0-4d86-b6b7-79ecf6f59a04}</Project>
-    </ProjectReference>
+    <ClCompile Include="Graphics.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
