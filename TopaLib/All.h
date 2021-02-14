@@ -1,4 +1,5 @@
 #pragma once
+//TODO more clear filter file structure
 
-#include "../Graphics/Graphics.h"
-#include "../Input/Input.h"
+#include "Input.h"
+#include "Graphics.h"

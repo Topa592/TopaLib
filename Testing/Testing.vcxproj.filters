@@ -18,6 +18,9 @@
     <ClInclude Include="mainLoop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="All.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

@@ -1,6 +1,6 @@
 #include "mainLoop.h"
 
-#include "../TopaLib/All.h"
+#include "All.h"
 #include <thread>
 
 Graphics graphics;

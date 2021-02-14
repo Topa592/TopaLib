@@ -1,4 +1,4 @@
-#include "../TopaLib/All.h"
+#include "All.h"
 #include <Windows.h>
 #include <thread>
 
