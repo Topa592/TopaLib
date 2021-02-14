@@ -1,5 +1,4 @@
 #pragma once
 
 #include "../Graphics/Graphics.h"
-
-void func();
+#include "../Input/Input.h"

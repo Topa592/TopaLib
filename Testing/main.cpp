@@ -4,7 +4,7 @@
 #include <thread>
 
 Graphics graphics;
-bool EngineOn = true;
+
 
 using namespace std;
 
@@ -36,7 +36,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 	AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, false, WS_EX_OVERLAPPEDWINDOW);
 
-	HWND windowHandle = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MainWindow", L"adadada", WS_OVERLAPPEDWINDOW, 100, 100, rect.right - rect.left, rect.bottom - rect.top, NULL, NULL, hInstance, 0);
+	HWND windowHandle = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MainWindow", L"Testing", WS_OVERLAPPEDWINDOW, 100, 100, rect.right - rect.left, rect.bottom - rect.top, NULL, NULL, hInstance, 0);
 
 	if (!windowHandle) return -1;
 
@@ -44,8 +44,10 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 	ShowWindow(windowHandle, nShowCmd);
 
+	bool engineOn = true;
+
 	//start
-	thread Engine(mainLoop);
+	thread Engine(mainLoop, std::ref(windowHandle), std::ref(engineOn));
 
 	MSG message;
 	while (GetMessage(&message, NULL, 0, 0)) {
@@ -53,7 +55,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		DispatchMessage(&message);
 	}
 
-	EngineOn = false;
+	engineOn = false;
 	Engine.join();
 
 	return 0;

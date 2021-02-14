@@ -139,16 +139,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TopaLib\TopaLib.vcxproj">
-      <Project>{17a164ad-5f1b-4e7e-8ba5-ca94dd942ac2}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainLoop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mainLoop.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Graphics\Graphics.vcxproj">
+      <Project>{2521a05b-bac0-4d86-b6b7-79ecf6f59a04}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Input\Input.vcxproj">
+      <Project>{81ef7067-dc7b-47f5-86aa-150d4ca7243b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\TopaLib\TopaLib.vcxproj">
+      <Project>{17a164ad-5f1b-4e7e-8ba5-ca94dd942ac2}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

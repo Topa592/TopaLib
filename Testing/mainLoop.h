@@ -1,2 +1,4 @@
 #pragma once
-void mainLoop();
+#include <Windows.h>
+
+void mainLoop(HWND& windowsHandle, bool& engineOn);
