@@ -50,6 +50,10 @@ void Graphics::ClearScreen() {
 	renderTarget->Clear();
 }
 
+void Graphics::DrawLine(float x1, float y1, float x2, float y2) {
+	renderTarget->DrawLine(D2D1::Point2F(x1, y1), D2D1::Point2F(x2, y2), brush, 1.0f);
+}
+
 void Graphics::DrawCircle(float x, float y, float radius) {
 	renderTarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius), brush, 3.0f);
 }
@@ -62,6 +66,10 @@ void Graphics::DrawTriangle(float x1, float y1, float x2, float y2, float x3, fl
 	renderTarget->DrawLine(D2D1::Point2F(x1, y1), D2D1::Point2F(x2, y2), brush, 2.0f);
 	renderTarget->DrawLine(D2D1::Point2F(x2, y2), D2D1::Point2F(x3, y3), brush, 2.0f);
 	renderTarget->DrawLine(D2D1::Point2F(x3, y3), D2D1::Point2F(x1, y1), brush, 2.0f);
+}
+
+void Graphics::FillRect(float left, float top, float right, float bottom) {
+	renderTarget->FillRectangle({ left, top, right, bottom }, brush);
 }
 
 void Graphics::BasicCircle(float x, float y) {
