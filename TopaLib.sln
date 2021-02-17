@@ -5,12 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopaLib", "TopaLib\TopaLib.vcxproj", "{17A164AD-5F1B-4E7E-8BA5-CA94DD942AC2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Testing", "Testing\Testing.vcxproj", "{9148C2B5-47FD-498E-BB6E-3BF319A537C3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AA51AC48-4C2F-49D8-9D32-94FDE1EBE0DD}"
-	ProjectSection(SolutionItems) = preProject
-		All.h = All.h
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestingTopaLib", "Testing\Testing.vcxproj", "{9148C2B5-47FD-498E-BB6E-3BF319A537C3}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopaLib2", "TopaLib2\TopaLib0.1.vcxproj", "{370B0166-33FE-4DDF-88B7-B47EFF2EBBA1}"
 EndProject
