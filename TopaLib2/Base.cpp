@@ -1,6 +1,6 @@
 #include "Base.h"
 
-Graphics::Graphics() {
+GraphicsBase::GraphicsBase() {
 	factory = NULL;
 	renderTarget = NULL;
 	brush = NULL;
@@ -8,7 +8,7 @@ Graphics::Graphics() {
 	textFormat = NULL;
 }
 
-Graphics::~Graphics() {
+GraphicsBase::~GraphicsBase() {
 	if (factory) factory->Release();
 	if (renderTarget) renderTarget->Release();
 	if (brush) brush->Release();
@@ -16,7 +16,7 @@ Graphics::~Graphics() {
 	if (textFormat) textFormat->Release();
 }
 
-bool Graphics::Init(HWND windowHandle) {
+bool GraphicsBase::Init(HWND windowHandle) {
 	HRESULT res = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &factory);
 	if (res != S_OK) return false;
 

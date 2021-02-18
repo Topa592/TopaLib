@@ -6,7 +6,7 @@
 #include <string>
 #pragma comment(lib, "d2d1.lib")
 
-class Graphics
+class GraphicsBase
 {
 private:
 	ID2D1Factory* factory;
@@ -16,8 +16,8 @@ public:
 	ID2D1HwndRenderTarget* renderTarget;
 	ID2D1SolidColorBrush* brush;
 
-	Graphics();
-	~Graphics();
+	GraphicsBase();
+	~GraphicsBase();
 
 	bool Init(HWND windowHandle);
 };

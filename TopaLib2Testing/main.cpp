@@ -3,7 +3,7 @@
 #include "All.h"
 #include <thread>
 
-GraphicsBase graphics;
+GraphicsBase graphsBase;
 
 
 using namespace std;
@@ -40,7 +40,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 	if (!windowHandle) return -1;
 
-	if (!graphics.Init(windowHandle)) return -1;
+	if (!graphsBase.Init(windowHandle)) return -1;
 
 	ShowWindow(windowHandle, nShowCmd);
 
