@@ -58,7 +58,7 @@ public:
 
 
 void updateGraphics() {
-	
+
 }
 
 void mainLoop(HWND& windowsHandle, bool& engineOn) {

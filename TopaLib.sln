@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopaLib", "TopaLib\TopaLib.vcxproj", "{17A164AD-5F1B-4E7E-8BA5-CA94DD942AC2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestingTopaLib", "Testing\Testing.vcxproj", "{9148C2B5-47FD-498E-BB6E-3BF319A537C3}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopaLib2", "TopaLib2\TopaLib0.1.vcxproj", "{370B0166-33FE-4DDF-88B7-B47EFF2EBBA1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopaLibTesting", "TopaLibTesting\TopaLibTesting.vcxproj", "{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,6 @@ Global
 		{17A164AD-5F1B-4E7E-8BA5-CA94DD942AC2}.Release|x64.Build.0 = Release|x64
 		{17A164AD-5F1B-4E7E-8BA5-CA94DD942AC2}.Release|x86.ActiveCfg = Release|Win32
 		{17A164AD-5F1B-4E7E-8BA5-CA94DD942AC2}.Release|x86.Build.0 = Release|Win32
-		{9148C2B5-47FD-498E-BB6E-3BF319A537C3}.Debug|x64.ActiveCfg = Debug|x64
-		{9148C2B5-47FD-498E-BB6E-3BF319A537C3}.Debug|x64.Build.0 = Debug|x64
-		{9148C2B5-47FD-498E-BB6E-3BF319A537C3}.Debug|x86.ActiveCfg = Debug|Win32
-		{9148C2B5-47FD-498E-BB6E-3BF319A537C3}.Debug|x86.Build.0 = Debug|Win32
-		{9148C2B5-47FD-498E-BB6E-3BF319A537C3}.Release|x64.ActiveCfg = Release|x64
-		{9148C2B5-47FD-498E-BB6E-3BF319A537C3}.Release|x64.Build.0 = Release|x64
-		{9148C2B5-47FD-498E-BB6E-3BF319A537C3}.Release|x86.ActiveCfg = Release|Win32
-		{9148C2B5-47FD-498E-BB6E-3BF319A537C3}.Release|x86.Build.0 = Release|Win32
 		{370B0166-33FE-4DDF-88B7-B47EFF2EBBA1}.Debug|x64.ActiveCfg = Debug|x64
 		{370B0166-33FE-4DDF-88B7-B47EFF2EBBA1}.Debug|x64.Build.0 = Debug|x64
 		{370B0166-33FE-4DDF-88B7-B47EFF2EBBA1}.Debug|x86.ActiveCfg = Debug|Win32
@@ -41,6 +33,14 @@ Global
 		{370B0166-33FE-4DDF-88B7-B47EFF2EBBA1}.Release|x64.Build.0 = Release|x64
 		{370B0166-33FE-4DDF-88B7-B47EFF2EBBA1}.Release|x86.ActiveCfg = Release|Win32
 		{370B0166-33FE-4DDF-88B7-B47EFF2EBBA1}.Release|x86.Build.0 = Release|Win32
+		{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}.Debug|x64.ActiveCfg = Debug|x64
+		{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}.Debug|x64.Build.0 = Debug|x64
+		{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}.Debug|x86.ActiveCfg = Debug|Win32
+		{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}.Debug|x86.Build.0 = Debug|Win32
+		{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}.Release|x64.ActiveCfg = Release|x64
+		{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}.Release|x64.Build.0 = Release|x64
+		{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}.Release|x86.ActiveCfg = Release|Win32
+		{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
