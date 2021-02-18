@@ -2,9 +2,30 @@
 #include <Windows.h>
 #include <thread>
 
-extern GraphicsBase graphics;
+extern GraphicsBase graphsBase;
 Input input;
-GraphicsText text(&graphics);
+
+
+class GraphicsExtension {
+public:
+	ID2D1RenderTarget* renderTarget;
+	ID2D1SolidColorBrush* brush;
+
+	void setBase(GraphicsBase& x) {
+		brush = x.brush;
+		renderTarget = x.renderTarget;
+	}
+
+	void DrawCircle(int x, int y, int radius) {
+		renderTarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius), brush, 1);
+	}
+
+	void FillRect(int x1, int y1, int x2, int y2) {
+		renderTarget->FillRectangle(D2D1::RectF(x1, y1, x2, y2), brush);
+	}
+};
+
+GraphicsExtension graphics;
 
 bool updateInput() {
 	if (input.getKey('A')) {
@@ -29,13 +50,12 @@ public:
 	int temp2 = 0;
 
 	void start() {
-		graphics.setBrush(1, 1, 0, 1);
+		graphics.brush->SetColor(D2D1::ColorF(1, 1, 0, 1));
 	}
 
 	void updateFrame() {
-		graphics.BeginDraw();
-		graphics.ClearScreen(0.0, 0.0, 0.7);
-		text.func();
+		graphics.renderTarget->BeginDraw();
+		graphics.renderTarget->Clear(D2D1::ColorF(0, 0, 0.7));
 		updateInput();
 
 		for (int i = 0; i < 100; i++) {
@@ -49,7 +69,7 @@ public:
 		for (int i = 0; i < temp2; i++) {
 			graphics.FillRect(i * 10, 680, i * 10 + 4, 690);
 		}
-		graphics.EndDraw();
+		graphics.renderTarget->EndDraw();
 		temp = ++temp % 60;
 		if (temp == 0) temp2 = ++temp2 % 60;
 	}
@@ -62,8 +82,10 @@ void updateGraphics() {
 }
 
 void mainLoop(HWND& windowsHandle, bool& engineOn) {
+	graphics.setBase(graphsBase);
 	myGraphics x;
 	x.start();
+	
 	while (engineOn) {
 		x.updateFrame();
 		Sleep(20);

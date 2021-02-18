@@ -4,9 +4,9 @@
 
 class GraphicsText {
 private:
-	Graphics* base;
+	GraphicsBase* base;
 public:
-	GraphicsText(Graphics* x) : base(x) {}
+	GraphicsText(GraphicsBase* x) : base(x) {}
 
 	void characterToText(const char& t, int x, int y);
 

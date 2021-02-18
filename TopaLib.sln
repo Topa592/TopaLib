@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopaLib2", "TopaLib2\TopaLi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopaLibTesting", "TopaLibTesting\TopaLibTesting.vcxproj", "{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopaLib2Testing", "TopaLib2Testing\TopaLib2Testing.vcxproj", "{CC9E6879-BD8F-477C-BE43-F80A31D5574C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}.Release|x64.Build.0 = Release|x64
 		{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}.Release|x86.ActiveCfg = Release|Win32
 		{45A0A5F9-DDBE-4AB8-89AB-F4D3CC8C9A0F}.Release|x86.Build.0 = Release|Win32
+		{CC9E6879-BD8F-477C-BE43-F80A31D5574C}.Debug|x64.ActiveCfg = Debug|x64
+		{CC9E6879-BD8F-477C-BE43-F80A31D5574C}.Debug|x64.Build.0 = Debug|x64
+		{CC9E6879-BD8F-477C-BE43-F80A31D5574C}.Debug|x86.ActiveCfg = Debug|Win32
+		{CC9E6879-BD8F-477C-BE43-F80A31D5574C}.Debug|x86.Build.0 = Debug|Win32
+		{CC9E6879-BD8F-477C-BE43-F80A31D5574C}.Release|x64.ActiveCfg = Release|x64
+		{CC9E6879-BD8F-477C-BE43-F80A31D5574C}.Release|x64.Build.0 = Release|x64
+		{CC9E6879-BD8F-477C-BE43-F80A31D5574C}.Release|x86.ActiveCfg = Release|Win32
+		{CC9E6879-BD8F-477C-BE43-F80A31D5574C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
