@@ -3,9 +3,6 @@
 #include "All.h"
 #include <thread>
 
-
-
-
 using namespace std;
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
