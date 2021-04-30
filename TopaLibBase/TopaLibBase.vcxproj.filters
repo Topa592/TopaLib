@@ -13,42 +13,39 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Base">
-      <UniqueIdentifier>{87795ecc-2ef4-4681-a6d8-0d89b6b785e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Graphics">
-      <UniqueIdentifier>{80af5f24-add0-4ff4-97dc-67bfa05fa2b6}</UniqueIdentifier>
+      <UniqueIdentifier>{1f12e9c6-80ca-4530-b078-bfdc9aa1b68f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Input">
-      <UniqueIdentifier>{0167e0e8-0d3a-439c-bfa7-d8338cfe4697}</UniqueIdentifier>
+      <UniqueIdentifier>{af381f6f-e983-4620-a9a9-eea5e27b8bf7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Base">
-      <UniqueIdentifier>{5fdc295a-2c4f-48c0-9506-c29a2a7dc814}</UniqueIdentifier>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{9605fdb2-ce93-418f-ae91-7a7b81ae86f5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Graphics">
-      <UniqueIdentifier>{fc82fcd1-865f-4ecc-aa34-649820470cd5}</UniqueIdentifier>
+      <UniqueIdentifier>{ecc59cbd-5002-4e2a-868f-c8eed74d66ec}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Input">
-      <UniqueIdentifier>{6e7593c1-a2ec-469a-99b8-a35882a9e7b0}</UniqueIdentifier>
+      <UniqueIdentifier>{7c693773-b69e-4c3b-9011-c1b4df2383bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility">
+      <UniqueIdentifier>{a08ccac0-3f7a-421b-8e46-afff64f02237}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Base.cpp">
-      <Filter>Source Files\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files\Input</Filter>
-    </ClCompile>
+    <ClInclude Include="Graphics.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="tldirect2d.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Base.h">
-      <Filter>Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="All.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="tldirect2d.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
