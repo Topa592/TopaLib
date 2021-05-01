@@ -1,5 +1,7 @@
 #include "GraphicsText.h"
 
+
+
 void GraphicsText::characterToText(const char& t, int x, int y) {
 	switch (t) {
 	case '1':
