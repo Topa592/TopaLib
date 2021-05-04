@@ -1,5 +1,7 @@
 #include "tldirect2d.h"
+#include <cstdlib>
 
+void atExit();
 bool createFactory();
 bool createRenderTarget(HWND&);
 bool createBrush();
@@ -10,19 +12,25 @@ bool tl::direct2d::Init(HWND windowHandle) {
 	if (createBrush() == false) return false;
 
 	tl::direct2d::ifInit = true;
+	std::atexit(atExit);
 	return true;
 }
 
-void tl::direct2d::Shutdown() {
-	if (factory) factory->Release();
-	if (renderTarget) renderTarget->Release();
-	if (brush) brush->Release();
+void tl::direct2d::ResizeRenderTarget(HWND windowHandle) {
+	RECT rect;
+	GetClientRect(windowHandle, &rect);
+	renderTarget->Resize(D2D1::SizeU(rect.right, rect.bottom));
 }
-
 
 //Helpers
 
 using namespace tl::direct2d;
+
+void atExit() {
+	if (factory) factory->Release();
+	if (renderTarget) renderTarget->Release();
+	if (brush) brush->Release();
+}
 
 bool createFactory() {
 	HRESULT res = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &factory);

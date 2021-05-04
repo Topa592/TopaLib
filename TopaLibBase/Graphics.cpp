@@ -1,5 +1,6 @@
 #include "Graphics.h"
 #include "tldirect2d.h"
+#include <cstdlib>
 
 using tl::direct2d::brush;
 using tl::direct2d::renderTarget;
@@ -9,6 +10,7 @@ void tl::graphics::setBrush(float r, float g, float b, float a) {
 }
 
 void tl::graphics::BeginDraw() {
+	if (tl::direct2d::ifInit == false) std::exit(EXIT_FAILURE);
 	renderTarget->BeginDraw();
 }
 

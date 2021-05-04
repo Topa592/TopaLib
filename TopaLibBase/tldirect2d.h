@@ -5,12 +5,12 @@
 
 namespace tl {
 	namespace direct2d {
-		inline bool ifInit;
-		inline ID2D1Factory* factory;
-		inline ID2D1HwndRenderTarget* renderTarget;
-		inline ID2D1SolidColorBrush* brush;
+		inline bool ifInit = false;
+		inline ID2D1Factory* factory = NULL;
+		inline ID2D1HwndRenderTarget* renderTarget = NULL;
+		inline ID2D1SolidColorBrush* brush = NULL;
 		
 		bool Init(HWND windowHandle);
-		void Shutdown();
+		void ResizeRenderTarget(HWND windowHandle);
 	}
 }
