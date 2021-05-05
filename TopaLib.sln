@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopaLib", "TopaLib\TopaLib.vcxproj", "{17A164AD-5F1B-4E7E-8BA5-CA94DD942AC2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopaLibBase", "TopaLibBase\TopaLibBase.vcxproj", "{79A9C92B-8729-479A-89CD-6978E60B301F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tl", "tl\tl.vcxproj", "{79A9C92B-8729-479A-89CD-6978E60B301F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
