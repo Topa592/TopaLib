@@ -22,7 +22,7 @@ void tl::direct2d::ResizeRenderTarget(HWND windowHandle) {
 	renderTarget->Resize(D2D1::SizeU(rect.right, rect.bottom));
 }
 
-//Helpers
+//Private
 
 using namespace tl::direct2d;
 
