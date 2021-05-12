@@ -16,6 +16,7 @@ void tl::graphics::BeginDraw() {
 
 void tl::graphics::EndDraw() {
 	renderTarget->EndDraw();
+	tl::direct2d::updateChanges();
 }
 
 void tl::graphics::ClearScreen(float r, float g, float b) {
