@@ -12,6 +12,7 @@ namespace tl {
 		
 		bool Init(HWND windowHandle);
 		void ResizeRenderTarget(HWND windowHandle);
+		void ResizeRenderTarget(int width, int height);
 		void updateChanges();
 	}
 }

@@ -51,11 +51,18 @@ bool tl::direct2d::Init(HWND windowHandle) {
 }
 
 void tl::direct2d::ResizeRenderTarget(HWND windowHandle) {
+	if (!tl::direct2d::ifInit) return;
 	change = true;
 	RECT rect;
 	GetClientRect(windowHandle, &rect);
 	newWindowSize.width = rect.right;
 	newWindowSize.height = rect.bottom;
+}
+
+void tl::direct2d::ResizeRenderTarget(int width, int height) {
+	change = true;
+	newWindowSize.width = width;
+	newWindowSize.height = height;
 }
 
 void tl::direct2d::updateChanges() {
