@@ -4,6 +4,19 @@
 
 #include <windowsx.h>
 
+namespace {
+	auto getMousePosition(const LPARAM& lParam)->tl::datatypes::Point {
+		return {
+			GET_X_LPARAM(lParam),
+			GET_Y_LPARAM(lParam)
+		};
+	}
+
+	void updateMousePosition(const LPARAM& lParam) {
+		tl::impl::mouse::latestLocation = getMousePosition(lParam);
+	}
+}
+
 void tl::windowProc::mouseMove(LPARAM lParam) {
 	int xPos = GET_X_LPARAM(lParam);
 	int yPos = GET_Y_LPARAM(lParam);
@@ -16,4 +29,20 @@ void tl::windowProc::resize(LPARAM lParam) {
 		LOWORD(lParam),
 		HIWORD(lParam)
 	);
+}
+
+void tl::windowProc::mouse::Move(LPARAM lParam) {
+	updateMousePosition(lParam);
+}
+
+void tl::windowProc::mouse::ButtonDown(LPARAM lParam, WPARAM wParam) {
+	
+}
+
+void tl::windowProc::mouse::ButtonUp(LPARAM lParam, WPARAM wParam) {
+
+}
+
+void tl::windowProc::mouse::ButtonDoubleClick(LPARAM lParam, WPARAM wParam) {
+
 }

@@ -43,6 +43,12 @@
     <Filter Include="Header Files\Impl">
       <UniqueIdentifier>{f64d32e3-8c1f-4f7d-a526-7a53245764e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\EventQueue">
+      <UniqueIdentifier>{9e281bcc-62f3-4790-8c69-d9eb080e8446}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EventQueue">
+      <UniqueIdentifier>{d30ab774-e183-45ee-a867-7833efde3b1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics.h">
@@ -72,6 +78,9 @@
     <ClInclude Include="Impl.h">
       <Filter>Header Files\Impl</Filter>
     </ClInclude>
+    <ClInclude Include="EventQueue.h">
+      <Filter>Header Files\EventQueue</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics.cpp">
@@ -94,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="EventQueue.cpp">
+      <Filter>Source Files\EventQueue</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

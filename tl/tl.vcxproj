@@ -145,6 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Datatypes.h" />
+    <ClInclude Include="EventQueue.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Impl.h" />
     <ClInclude Include="Input.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="WindowProc.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Mouse.cpp" />
