@@ -13,99 +13,141 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Graphics">
-      <UniqueIdentifier>{1f12e9c6-80ca-4530-b078-bfdc9aa1b68f}</UniqueIdentifier>
+    <Filter Include="Header Files\tl">
+      <UniqueIdentifier>{f21a5c17-0992-42f5-b917-840e551b2e27}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Input">
-      <UniqueIdentifier>{af381f6f-e983-4620-a9a9-eea5e27b8bf7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utility">
-      <UniqueIdentifier>{9605fdb2-ce93-418f-ae91-7a7b81ae86f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Graphics">
-      <UniqueIdentifier>{ecc59cbd-5002-4e2a-868f-c8eed74d66ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Input">
-      <UniqueIdentifier>{7c693773-b69e-4c3b-9011-c1b4df2383bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utility">
-      <UniqueIdentifier>{a08ccac0-3f7a-421b-8e46-afff64f02237}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Windows">
-      <UniqueIdentifier>{88e866ff-f7b1-47a3-92d7-02a2a31d6c17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Windows">
-      <UniqueIdentifier>{183e5bf4-06ef-44fd-9bd8-5e7db26d1fde}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Datatypes">
+    <Filter Include="Header Files\tl\Datatypes">
       <UniqueIdentifier>{31787242-ae39-4639-8a28-326e5456b2c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Impl">
-      <UniqueIdentifier>{f64d32e3-8c1f-4f7d-a526-7a53245764e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\EventQueue">
+    <Filter Include="Header Files\tl\EventQueue">
       <UniqueIdentifier>{9e281bcc-62f3-4790-8c69-d9eb080e8446}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\EventQueue">
+    <Filter Include="Header Files\tl\Graphics">
+      <UniqueIdentifier>{1f12e9c6-80ca-4530-b078-bfdc9aa1b68f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tl\Impl">
+      <UniqueIdentifier>{f64d32e3-8c1f-4f7d-a526-7a53245764e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tl\Input">
+      <UniqueIdentifier>{af381f6f-e983-4620-a9a9-eea5e27b8bf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tl\Utility">
+      <UniqueIdentifier>{9605fdb2-ce93-418f-ae91-7a7b81ae86f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tl\Windows">
+      <UniqueIdentifier>{88e866ff-f7b1-47a3-92d7-02a2a31d6c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tl">
+      <UniqueIdentifier>{4510e9fa-5f8b-4e81-9cb6-55f6d5bd401e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tl\EventQueue">
       <UniqueIdentifier>{d30ab774-e183-45ee-a867-7833efde3b1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tl\Graphics">
+      <UniqueIdentifier>{ecc59cbd-5002-4e2a-868f-c8eed74d66ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tl\Input">
+      <UniqueIdentifier>{7c693773-b69e-4c3b-9011-c1b4df2383bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tl\Utility">
+      <UniqueIdentifier>{a08ccac0-3f7a-421b-8e46-afff64f02237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tl\Windows">
+      <UniqueIdentifier>{183e5bf4-06ef-44fd-9bd8-5e7db26d1fde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tlsge">
+      <UniqueIdentifier>{80d3f6f2-84eb-4e6a-a79c-40351e40e6b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tlsge">
+      <UniqueIdentifier>{a2a1a40f-5623-4d37-ba50-1c55aa78d845}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tlart">
+      <UniqueIdentifier>{ad34c924-d6ac-4c76-8f16-26de52c5828e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tlart">
+      <UniqueIdentifier>{11f49960-60c3-4c96-ace5-6910c1d24339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tlsge\impl">
+      <UniqueIdentifier>{76eb9f80-b361-40af-9a9f-df92aee99a14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tlsge\impl">
+      <UniqueIdentifier>{28a268ad-1d20-4460-bdd4-51c400646050}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\tl\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="tldirect2d.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\tl\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="tlwindows.h">
-      <Filter>Header Files\Utility</Filter>
+      <Filter>Header Files\tl\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
-      <Filter>Header Files\Input</Filter>
+      <Filter>Header Files\tl\Input</Filter>
     </ClInclude>
     <ClInclude Include="Utility.h">
-      <Filter>Header Files\Utility</Filter>
+      <Filter>Header Files\tl\Utility</Filter>
     </ClInclude>
     <ClInclude Include="WindowProc.h">
-      <Filter>Header Files\Windows</Filter>
+      <Filter>Header Files\tl\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h">
-      <Filter>Header Files\Input</Filter>
+      <Filter>Header Files\tl\Input</Filter>
     </ClInclude>
     <ClInclude Include="Datatypes.h">
-      <Filter>Header Files\Datatypes</Filter>
+      <Filter>Header Files\tl\Datatypes</Filter>
     </ClInclude>
     <ClInclude Include="Impl.h">
-      <Filter>Header Files\Impl</Filter>
+      <Filter>Header Files\tl\Impl</Filter>
     </ClInclude>
     <ClInclude Include="EventQueue.h">
-      <Filter>Header Files\EventQueue</Filter>
+      <Filter>Header Files\tl\EventQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\setup.h">
+      <Filter>Header Files\tlsge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\game.h">
+      <Filter>Header Files\tlsge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\impl\impl.h">
+      <Filter>Header Files\tlsge\impl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\tl\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="tldirect2d.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\tl\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="tlwindows.cpp">
-      <Filter>Source Files\Utility</Filter>
+      <Filter>Source Files\tl\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
-      <Filter>Source Files\Input</Filter>
+      <Filter>Source Files\tl\Input</Filter>
     </ClCompile>
     <ClCompile Include="UtilitySleep.cpp">
-      <Filter>Source Files\Utility</Filter>
+      <Filter>Source Files\tl\Utility</Filter>
     </ClCompile>
     <ClCompile Include="WindowProc.cpp">
-      <Filter>Source Files\Windows</Filter>
+      <Filter>Source Files\tl\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
-      <Filter>Source Files\Input</Filter>
+      <Filter>Source Files\tl\Input</Filter>
     </ClCompile>
     <ClCompile Include="EventQueue.cpp">
-      <Filter>Source Files\EventQueue</Filter>
+      <Filter>Source Files\tl\EventQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\setup.cpp">
+      <Filter>Source Files\tlsge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\game.cpp">
+      <Filter>Source Files\tlsge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\impl\impl.cpp">
+      <Filter>Source Files\tlsge\impl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

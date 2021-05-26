@@ -14,10 +14,13 @@ void tl::utility::sleep::Start() {
 void tl::utility::sleep::End(int msTotal) {
 	using namespace std;
 	sleepExtra = chrono::high_resolution_clock::now();
-	toSleep = chrono::milliseconds(msTotal) - sleepedExtra
-		- chrono::duration_cast<chrono::duration<double>>
+	auto sleepTime = chrono::milliseconds(msTotal);
+	auto timebetweenStartAndEnd = chrono::duration_cast<chrono::duration<double>>
 		(chrono::high_resolution_clock::now() - t1);
+
+	toSleep = sleepTime - sleepedExtra - timebetweenStartAndEnd;
 	this_thread::sleep_for(toSleep);
+
 	if (toSleep.count() <= 0) toSleep = chrono::milliseconds(0);
 
 	sleepedExtra = chrono::duration_cast<chrono::duration<double>>

@@ -3,7 +3,7 @@
 #include "Graphics.h"
 #include <cstdlib>
 
-HWND tl::windows::InitWindow(HINSTANCE& hInstance, int& nShowCmd, LRESULT(*WindowProc)(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)) {
+HWND tl::windows::InitWindow(HINSTANCE& hInstance, int& nShowCmd, WNDPROC WindowProc) {
 	WNDCLASSEX windowclass;
 	ZeroMemory(&windowclass, sizeof(WNDCLASSEX));
 	windowclass.cbSize = sizeof(WNDCLASSEX);
@@ -25,7 +25,7 @@ HWND tl::windows::InitWindow(HINSTANCE& hInstance, int& nShowCmd, LRESULT(*Windo
 	return windowHandle;
 }
 
-void tl::windows::InitDirect2DWindow(HINSTANCE& hInstance, int& nShowCmd, LRESULT(*WindowProc)(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)) {
+void tl::windows::InitDirect2DWindow(HINSTANCE& hInstance, int& nShowCmd, WNDPROC WindowProc) {
 	HWND windowHandle = tl::windows::InitWindow(hInstance, nShowCmd, WindowProc);
 	if (!windowHandle) std::exit(EXIT_FAILURE);
 	if (!tl::direct2d::Init(windowHandle)) std::exit(EXIT_FAILURE);

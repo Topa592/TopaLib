@@ -1,24 +1,25 @@
 #pragma once
 
 namespace tl {
-	namespace graphics {
-		void setBrush(float r, float g, float b, float a);
+	class graphics {
+	public:
+		static void setBrush(float r, float g, float b, float a);
 
-		void BeginDraw();
-		void EndDraw();
+		static void BeginDraw();
+		static void EndDraw();
 
-		void ClearScreen(float r, float g, float b);
-		void ClearScreen();
+		static void ClearScreen(float r, float g, float b);
+		static void ClearScreen();
 
-		void DrawLine(float x1, float y1, float x2, float y2);
+		static void DrawLine(float x1, float y1, float x2, float y2);
 
-		void DrawCircle(float x, float y, float radius);
-		void DrawRect(float left, float top, float right, float bottom);
-		void DrawTriangle(float x1, float y1, float x2, float y2, float x3, float y3);
+		static void DrawCircle(float x, float y, float radius);
+		static void DrawRect(float left, float top, float right, float bottom);
+		static void DrawTriangle(float x1, float y1, float x2, float y2, float x3, float y3);
 
-		void FillRect(float left, float top, float right, float bottom);
+		static void FillRect(float left, float top, float right, float bottom);
 
-		void BasicCircle(float x, float y);
-		void BasicRect(float x, float y);
-	}
+		static void BasicCircle(float x, float y);
+		static void BasicRect(float x, float y);
+	};
 }

@@ -28,13 +28,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -89,6 +89,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,6 +105,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,10 +150,13 @@
   <ItemGroup>
     <ClInclude Include="Datatypes.h" />
     <ClInclude Include="EventQueue.h" />
+    <ClInclude Include="sge\game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Impl.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="sge\impl\impl.h" />
+    <ClInclude Include="sge\setup.h" />
     <ClInclude Include="tldirect2d.h" />
     <ClInclude Include="tlwindows.h" />
     <ClInclude Include="Utility.h" />
@@ -160,6 +167,9 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="sge\game.cpp" />
+    <ClCompile Include="sge\impl\impl.cpp" />
+    <ClCompile Include="sge\setup.cpp" />
     <ClCompile Include="tldirect2d.cpp" />
     <ClCompile Include="tlwindows.cpp" />
     <ClCompile Include="UtilitySleep.cpp" />
