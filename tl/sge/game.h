@@ -17,6 +17,7 @@ namespace tl {
 		};
 		class Create {
 		public:
+			static void Grid(sge::Rect area, int width, int height, void (*Func)(sge::Point p, int x, int y));
 			static void Button(sge::Rect area, void (*Func)(sge::Point p));
 			//static void ButtomSpammable(sge::Rect )
 			static void ButtonHold(sge::Rect area, void (*Func)(sge::Point p));
@@ -24,6 +25,11 @@ namespace tl {
 			static sge::Rect Rect(int top, int left, int bottom, int right);
 			static sge::Point Point(int x, int y);
 			static sge::Color Color(float r, float g, float b, float a);
+		};
+		class Engine {
+		public:
+			inline static Color Background = { 0,0,0.7f };
+			inline static int Tickrate = 50;
 		};
 		class Graphics {
 		public:

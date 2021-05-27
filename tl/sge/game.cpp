@@ -46,6 +46,11 @@ void tl::sge::Graphics::drawText(const wchar_t* c, int length, Rect r) {
 		tl::direct2d::brush);
 }
 
+void tl::sge::Create::Grid(sge::Rect area, int width, int height, void(*Func)(sge::Point p, int x, int y)) {
+	impl::GridData temp = { area, width, height, Func };
+	impl::grids.push_back(temp);
+}
+
 void tl::sge::Create::Button(sge::Rect area, void(*Func)(sge::Point p)) {
 	impl::ButtonData temp = { area, Func };
 	impl::buttons.push_back(temp);

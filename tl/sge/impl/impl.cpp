@@ -25,6 +25,7 @@ void tl::sge::impl::mainLoop(int(*Tick)(void)) {
 	while (!done) {
 		tl::utility::sleep::Start();
 		impl::Inputs::resetInput();
+		tl::graphics::BeginDraw();
 		while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
 			if (message.message == WM_QUIT) {
 				done = true;
@@ -33,10 +34,10 @@ void tl::sge::impl::mainLoop(int(*Tick)(void)) {
 				DispatchMessage(&message);
 			}
 		}
+		
 		handleLButtonDown();
-		tl::graphics::BeginDraw();
 		impl::Graphics::clearScreen(impl::Graphics::backGroundColor);
-		drawButtons();
+		impl::drawAll();
 		int result = Tick();
 		switch (result) {
 		case 0:
@@ -48,14 +49,45 @@ void tl::sge::impl::mainLoop(int(*Tick)(void)) {
 		tl::graphics::EndDraw();
 
 		if (done) break;
-		tl::utility::sleep::End(50);
+		tl::utility::sleep::End(sge::Engine::Tickrate);
 	}
 }
 
 void tl::sge::impl::drawButtons() {
-	for (const tl::sge::impl::ButtonData& d : buttons) {
+	for (const impl::ButtonData& d : buttons) {
 		tl::sge::Graphics::drawRect(d.area);
 	}
+}
+
+void tl::sge::impl::drawGrids() {
+	for (const impl::GridData& d : grids) {
+		sge::Graphics::drawRect(d.area);
+		float stepX = (float)(d.area.right - d.area.left) / (float)d.width;
+		float stepY = (float)(d.area.bottom - d.area.top) / (float)d.height;
+		sge::Point p1;
+		sge::Point p2;
+		p1.y = d.area.top;
+		p2.y = d.area.bottom;
+		for (int x = 1; x < d.width; x++) {
+			int left = (int)(stepX * x + d.area.left);
+			p1.x = left;
+			p2.x = left;
+			sge::Graphics::drawLine(p1, p2);
+		}
+		p1.x = d.area.left;
+		p2.x = d.area.right;
+		for (int y = 1; y < d.height; y++) {
+			int top = (int)(stepY * y + d.area.top);
+			p1.y = top;
+			p2.y = top;
+			sge::Graphics::drawLine(p1, p2);
+		}
+	}
+}
+
+void tl::sge::impl::drawAll() {
+	impl::drawButtons();
+	impl::drawGrids();
 }
 
 void tl::sge::impl::handleLButtonDown() {//HACK needs more optimizing to support multiple clicks a tick
@@ -67,6 +99,33 @@ void tl::sge::impl::handleLButtonDown() {//HACK needs more optimizing to support
 		if (d.area.left <= p.x && p.x <= d.area.right
 			&& d.area.top <= p.y && p.y <= d.area.bottom) {
 			d.Func(p);
+		}
+	}
+	for (const tl::sge::impl::GridData& d : grids) {
+		if (d.area.left <= p.x && p.x <= d.area.right
+			&& d.area.top <= p.y && p.y <= d.area.bottom) {
+			float stepX = (float)(d.area.right - d.area.left) / (float)d.width;
+			float stepY = (float)(d.area.bottom - d.area.top) / (float)d.height;
+			int resultX = 0;
+			int resultY = 0;
+			sge::Point temp = { p.x - d.area.left, p.y - d.area.top };
+			for (int x = 0; x < d.width; x++) {
+				int left = (int)(stepX * x);
+				int right = (int)(left + stepX);
+				if (left <= temp.x && temp.x <= right) {
+					resultX = x;
+					break;
+				}
+			}
+			for (int y = 0; y < d.height; y++) {
+				int top = (int)(stepY * y);
+				int bottom = (int)(top + stepY);
+				if (top <= temp.y && temp.y <= bottom) {
+					resultY = y;
+					break;
+				}
+			}
+			d.Func(p, resultX, resultY);
 		}
 	}
 }

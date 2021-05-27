@@ -6,7 +6,6 @@
 namespace tl {
 	namespace sge {
 		namespace impl {
-			
 			struct ClickData {
 				bool clicked = false;
 				sge::Point location = { 0,0 };
@@ -25,14 +24,23 @@ namespace tl {
 				tl::sge::Rect area;
 				void (*Func)(tl::sge::Point p);
 			};
+			struct GridData {
+				tl::sge::Rect area;
+				int width;
+				int height;
+				void (*Func)(sge::Point p, int x, int y);
+			};
 			class Graphics {
 			public:
 				inline static Color backGroundColor = { 0,0,0.7f };
 				static void clearScreen(Color c);
 			};
 			inline std::vector<ButtonData> buttons;
-
+			inline std::vector<GridData> grids;
+			
 			void drawButtons();
+			void drawGrids();
+			void drawAll();
 
 			void handleLButtonDown();
 			void LButtonDown(LPARAM lParam);
