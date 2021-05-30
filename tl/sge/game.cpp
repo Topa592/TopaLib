@@ -36,14 +36,11 @@ void tl::sge::Graphics::fillRect(Rect r) {
 }
 
 void tl::sge::Graphics::drawText(const wchar_t* c, int length, Rect r) {
-	const WCHAR* te = c;
-	UINT32 le = length;
-	tl::direct2d::renderTarget->DrawTextW(
-		te,
-		le,
-		tl::direct2d::textFormat,
-		D2D1::RectF((float)r.left, (float)r.top, (float)r.right, (float)r.bottom),
-		tl::direct2d::brush);
+	tl::graphics::drawText(c, length, (float)r.top, (float)r.left, (float)r.bottom, (float)r.right);
+}
+
+void tl::sge::Graphics::drawText(const char* c, int length, Rect r) {
+	tl::graphics::drawText(c, length, (float)r.top, (float)r.left, (float)r.bottom, (float)r.right);
 }
 
 void tl::sge::Create::Grid(sge::Rect area, int width, int height, void(*Func)(sge::Point p, int x, int y)) {

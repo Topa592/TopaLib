@@ -1,6 +1,6 @@
 #pragma once
 namespace tl {
-	namespace sge {
+	namespace ge {
 		struct Color {
 			float r = 0, g = 0, b = 0;
 			float a = 0;
@@ -15,21 +15,28 @@ namespace tl {
 			int bottom;
 			int right;
 		};
-		class Create {
+		class Text {
+		private:
+			class Impl; Impl* pimpl;
 		public:
-			static void Grid(sge::Rect area, int width, int height, void (*Func)(sge::Point p, int x, int y));
-			static void Button(sge::Rect area, void (*Func)(sge::Point p));
-			//static void ButtomSpammable(sge::Rect )
-			static void ButtonHold(sge::Rect area, void (*Func)(sge::Point p));
-			//static void ButtonToggle(sge::Rect area);
-			static sge::Rect Rect(int top, int left, int bottom, int right);
-			static sge::Point Point(int x, int y);
-			static sge::Color Color(float r, float g, float b, float a);
+			Text();
+			~Text();
+			void operator=(int x);
+			void operator=(Text x);
+			void setText(const char* c, int length);
+			void setText(const wchar_t* c, int length);
+
 		};
 		class Engine {
 		public:
 			inline static Color Background = { 0,0,0.7f };
 			inline static int Tickrate = 50;
+		};
+		class Create {
+		public:
+			static ge::Rect Rect(int top, int left, int bottom, int right);
+			static ge::Point Point(int x, int y);
+			static ge::Color Color(float r, float g, float b, float a);
 		};
 		class Graphics {
 		public:
@@ -45,6 +52,7 @@ namespace tl {
 			static void fillRect(Rect r);
 			static void drawText(const wchar_t* c, int length, Rect area);
 			static void drawText(const char* c, int length, Rect area);
+			static void drawText(Text t, Rect area);
 		};
 		class Input {
 		public:
