@@ -15,12 +15,34 @@ namespace tl {
 			int bottom;
 			int right;
 		};
+		enum class Clicktype {
+			LDown = 0,
+			MDown = 1,
+			RDown = 2,
+			LUp = 3,
+			MUp = 4,
+			RUp = 5
+		};
+		struct Click {
+			Clicktype type;
+			Point location;
+		};
+		struct GridClick {
+			const Rect& clickedGridArea;
+			const int& x;
+			const int& y;
+			const Click& click;
+		};
+		struct ButtonClick {
+			const Rect& buttonArea;
+			const Click& click;
+		};
 		class Create {
 		public:
-			static void Grid(sge::Rect area, int width, int height, void (*Func)(sge::Point p, int x, int y));
-			static void Button(sge::Rect area, void (*Func)(sge::Point p));
+			static void Grid(sge::Rect area, int width, int height, void (*Func)(GridClick c));
+			static void Button(sge::Rect area, void (*Func)(ButtonClick c));
 			//static void ButtomSpammable(sge::Rect )
-			static void ButtonHold(sge::Rect area, void (*Func)(sge::Point p));
+			//static void ButtonHold(sge::Rect area, void (*Func)(sge::Point p));
 			//static void ButtonToggle(sge::Rect area);
 			static sge::Rect Rect(int top, int left, int bottom, int right);
 			static sge::Point Point(int x, int y);
@@ -30,6 +52,7 @@ namespace tl {
 		public:
 			inline static Color Background = { 0,0,0.7f };
 			inline static int Tickrate = 50;
+			void static shutdown();
 		};
 		class Graphics {
 		public:

@@ -160,6 +160,9 @@
     <ClInclude Include="ge\ge1\ph\game.h" />
     <ClInclude Include="ge\ge1\ph\setup.h" />
     <ClInclude Include="ge\geCore.h" />
+    <ClInclude Include="sge2\engine.h" />
+    <ClInclude Include="sge2\ph\game.h" />
+    <ClInclude Include="sge2\ph\setup.h" />
     <ClInclude Include="sge\game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Impl.h" />
@@ -183,6 +186,11 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="sge2\engine.cpp" />
+    <ClCompile Include="sge2\input.cpp" />
+    <ClCompile Include="sge2\other.cpp" />
+    <ClCompile Include="sge2\ph\game.cpp" />
+    <ClCompile Include="sge2\ph\setup.cpp" />
     <ClCompile Include="sge\game.cpp" />
     <ClCompile Include="sge\impl\impl.cpp" />
     <ClCompile Include="sge\setup.cpp" />

@@ -43,18 +43,18 @@ void tl::sge::Graphics::drawText(const char* c, int length, Rect r) {
 	tl::graphics::drawText(c, length, (float)r.top, (float)r.left, (float)r.bottom, (float)r.right);
 }
 
-void tl::sge::Create::Grid(sge::Rect area, int width, int height, void(*Func)(sge::Point p, int x, int y)) {
+void tl::sge::Create::Grid(sge::Rect area, int width, int height, void(*Func)(GridClick c)) {
 	impl::GridData temp = { area, width, height, Func };
 	impl::grids.push_back(temp);
 }
 
-void tl::sge::Create::Button(sge::Rect area, void(*Func)(sge::Point p)) {
+void tl::sge::Create::Button(sge::Rect area, void(*Func)(ButtonClick c)) {
 	impl::ButtonData temp = { area, Func };
 	impl::buttons.push_back(temp);
 }
 
-void tl::sge::Create::ButtonHold(sge::Rect area, void(*Func)(sge::Point p)) {
-
+void tl::sge::Engine::shutdown() {
+	impl::done = true;
 }
 
 sge::Rect tl::sge::Create::Rect(int top, int left, int bottom, int right) {

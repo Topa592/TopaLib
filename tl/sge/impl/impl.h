@@ -15,20 +15,22 @@ namespace tl {
 			};
 			class Inputs {
 			public:
+				//more info in game.h Clicktype
 				//0 LDown, 1 MDown, 2 RDown, 3 LUp, 4 MUp, 5 RUp
+				inline static int mouseDataSize = 6;
 				inline static ClickData mouseData[6];
 				static void resetInput();
 			};
 			void mainLoop(int (*Tick)(void));
 			struct ButtonData {
 				tl::sge::Rect area;
-				void (*Func)(tl::sge::Point p);
+				void (*Func)(sge::ButtonClick c);
 			};
 			struct GridData {
 				tl::sge::Rect area;
 				int width;
 				int height;
-				void (*Func)(sge::Point p, int x, int y);
+				void (*Func)(sge::GridClick c);
 			};
 			class Graphics {
 			public:
@@ -37,13 +39,14 @@ namespace tl {
 			};
 			inline std::vector<ButtonData> buttons;
 			inline std::vector<GridData> grids;
+			inline bool done = false;
 			
 			void drawButtons();
 			void drawGrids();
 			void drawAll();
 
-			void handleLButtonDown();
-			void LButtonDown(LPARAM lParam);
+			void handleMouse();
+			void MouseInput(int type, LPARAM lParam);
 
 			auto lParamToSGEPoint(LPARAM lParam)->tl::sge::Point;
 		}

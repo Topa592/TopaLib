@@ -91,6 +91,12 @@
     <Filter Include="Header Files\tlge\ge1\ph">
       <UniqueIdentifier>{5b9f54ed-1fae-4dd9-905b-0fd76583ed83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\tlsge2">
+      <UniqueIdentifier>{2125e423-9349-414e-9354-113b53cb05c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tlsge2">
+      <UniqueIdentifier>{1b68dd86-b8b2-48bd-98cf-d1f19176947f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics.h">
@@ -141,14 +147,23 @@
     <ClInclude Include="ge\ge1\ge.h">
       <Filter>Header Files\tlge\ge1</Filter>
     </ClInclude>
-    <ClInclude Include="ge\ge1\geInit.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sge2\ph\game.h">
+      <Filter>Header Files\tlsge2</Filter>
     </ClInclude>
-    <ClInclude Include="ge\ge1\ph\setup.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="sge2\engine.h">
+      <Filter>Header Files\tlsge2</Filter>
     </ClInclude>
     <ClInclude Include="ge\core.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\tlge</Filter>
+    </ClInclude>
+    <ClInclude Include="ge\ge1\geInit.h">
+      <Filter>Header Files\tlge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge2\ph\setup.h">
+      <Filter>Header Files\tlsge2</Filter>
+    </ClInclude>
+    <ClInclude Include="ge\ge1\ph\setup.h">
+      <Filter>Header Files\tlge</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -194,14 +209,29 @@
     <ClCompile Include="ge\ge1\ph\game.cpp">
       <Filter>Source Files\tlge\ge1\ph</Filter>
     </ClCompile>
-    <ClCompile Include="ge\ge1\geInit.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sge2\ph\game.cpp">
+      <Filter>Source Files\tlsge2</Filter>
     </ClCompile>
-    <ClCompile Include="ge\ge1\ph\setup.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="sge2\engine.cpp">
+      <Filter>Source Files\tlsge2</Filter>
     </ClCompile>
     <ClCompile Include="ge\core.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\tlge</Filter>
+    </ClCompile>
+    <ClCompile Include="ge\ge1\geInit.cpp">
+      <Filter>Source Files\tlge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge2\input.cpp">
+      <Filter>Source Files\tlsge2</Filter>
+    </ClCompile>
+    <ClCompile Include="sge2\other.cpp">
+      <Filter>Source Files\tlsge2</Filter>
+    </ClCompile>
+    <ClCompile Include="ge\ge1\ph\setup.cpp">
+      <Filter>Source Files\tlge</Filter>
+    </ClCompile>
+    <ClCompile Include="sge2\ph\setup.cpp">
+      <Filter>Source Files\tlsge2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
