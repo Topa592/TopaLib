@@ -1,5 +1,4 @@
-#include "impl/impl.h"
-#include "game.h"
+#include "sge.h"
 #include <Windows.h>
 #include "../Graphics.h"
 #include "../tldirect2d.h"

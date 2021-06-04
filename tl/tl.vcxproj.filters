@@ -129,13 +129,13 @@
     <ClInclude Include="EventQueue.h">
       <Filter>Header Files\tl\EventQueue</Filter>
     </ClInclude>
-    <ClInclude Include="sge\setup.h">
+    <ClInclude Include="ph\sge\setup.h">
       <Filter>Header Files\tlsge</Filter>
     </ClInclude>
-    <ClInclude Include="sge\game.h">
+    <ClInclude Include="ph\sge\game.h">
       <Filter>Header Files\tlsge</Filter>
     </ClInclude>
-    <ClInclude Include="sge\impl\impl.h">
+    <ClInclude Include="sge\impl.h">
       <Filter>Header Files\tlsge\impl</Filter>
     </ClInclude>
     <ClInclude Include="ge\ge1\ph\game.h">
@@ -164,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="ge\ge1\ph\setup.h">
       <Filter>Header Files\tlge</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sge.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -197,7 +200,7 @@
     <ClCompile Include="sge\game.cpp">
       <Filter>Source Files\tlsge</Filter>
     </ClCompile>
-    <ClCompile Include="sge\impl\impl.cpp">
+    <ClCompile Include="sge\impl.cpp">
       <Filter>Source Files\tlsge\impl</Filter>
     </ClCompile>
     <ClCompile Include="ge\geCore.cpp">

@@ -1,11 +1,12 @@
 #pragma once
-#include "../game.h"
+#include "sge.h"
 #include <vector>
-#include "../../Mouse.h"
-#include "../../WindowProc.h"
+#include "../Mouse.h"
+#include "../WindowProc.h"
 namespace tl {
 	namespace sge {
 		namespace impl {
+			LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 			struct ClickData {
 				bool clicked = false;
 				sge::Point location = { 0,0 };

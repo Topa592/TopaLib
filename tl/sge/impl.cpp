@@ -1,11 +1,11 @@
-#include "impl.h"
+#include "sge.h"
 #include <Windows.h>
-#include "../../WindowProc.h"
-#include "../../Utility.h"
-#include "../../Graphics.h"
+#include "../WindowProc.h"
+#include "../Utility.h"
+#include "../Graphics.h"
 #include <windowsx.h>
 
-LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+LRESULT CALLBACK tl::sge::impl::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	switch (uMsg) {
 	case WM_SIZE:
 		tl::windowProc::resize(lParam);

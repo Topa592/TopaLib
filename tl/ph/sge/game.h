@@ -1,4 +1,5 @@
 #pragma once
+//
 namespace tl {
 	namespace sge {
 		struct Color {

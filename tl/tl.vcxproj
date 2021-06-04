@@ -163,13 +163,14 @@
     <ClInclude Include="sge2\engine.h" />
     <ClInclude Include="sge2\ph\game.h" />
     <ClInclude Include="sge2\ph\setup.h" />
-    <ClInclude Include="sge\game.h" />
+    <ClInclude Include="ph\sge\game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Impl.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Mouse.h" />
-    <ClInclude Include="sge\impl\impl.h" />
-    <ClInclude Include="sge\setup.h" />
+    <ClInclude Include="sge\impl.h" />
+    <ClInclude Include="ph\sge\setup.h" />
+    <ClInclude Include="sge\sge.h" />
     <ClInclude Include="tldirect2d.h" />
     <ClInclude Include="tlwindows.h" />
     <ClInclude Include="Utility.h" />
@@ -192,7 +193,7 @@
     <ClCompile Include="sge2\ph\game.cpp" />
     <ClCompile Include="sge2\ph\setup.cpp" />
     <ClCompile Include="sge\game.cpp" />
-    <ClCompile Include="sge\impl\impl.cpp" />
+    <ClCompile Include="sge\impl.cpp" />
     <ClCompile Include="sge\setup.cpp" />
     <ClCompile Include="tldirect2d.cpp" />
     <ClCompile Include="tlwindows.cpp" />
