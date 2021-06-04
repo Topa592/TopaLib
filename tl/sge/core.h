@@ -1,11 +1,10 @@
 #pragma once
 #include "sge.h"
 #include <vector>
-#include "../Mouse.h"
-#include "../WindowProc.h"
+#include <Windows.h>
 namespace tl {
 	namespace sge {
-		namespace impl {
+		namespace e {
 			LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 			struct ClickData {
 				bool clicked = false;

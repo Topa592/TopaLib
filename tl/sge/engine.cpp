@@ -5,28 +5,28 @@
 #include "../Graphics.h"
 #include <windowsx.h>
 
-LRESULT CALLBACK tl::sge::impl::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+LRESULT CALLBACK tl::sge::e::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	switch (uMsg) {
 	case WM_SIZE:
 		tl::windowProc::resize(lParam);
 		return 0;
 	case WM_LBUTTONDOWN:
-		tl::sge::impl::MouseInput(0, lParam);
+		tl::sge::e::MouseInput(0, lParam);
 		return 0;
 	case WM_MBUTTONDOWN:
-		tl::sge::impl::MouseInput(1, lParam);
+		tl::sge::e::MouseInput(1, lParam);
 		return 0;
 	case WM_RBUTTONDOWN:
-		tl::sge::impl::MouseInput(2, lParam);
+		tl::sge::e::MouseInput(2, lParam);
 		return 0;
 	case WM_LBUTTONUP:
-		tl::sge::impl::MouseInput(3, lParam);
+		tl::sge::e::MouseInput(3, lParam);
 		return 0;
 	case WM_MBUTTONUP:
-		tl::sge::impl::MouseInput(4, lParam);
+		tl::sge::e::MouseInput(4, lParam);
 		return 0;
 	case WM_RBUTTONUP:
-		tl::sge::impl::MouseInput(5, lParam);
+		tl::sge::e::MouseInput(5, lParam);
 		return 0;
 	case WM_DESTROY: { PostQuitMessage(0); return 0; }
 	}
@@ -34,15 +34,15 @@ LRESULT CALLBACK tl::sge::impl::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, 
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
-void tl::sge::impl::mainLoop(int(*Tick)(void)) {
+void tl::sge::e::mainLoop(int(*Tick)(void)) {
 	MSG message;
-	while (!impl::done) {
+	while (!e::done) {
 		tl::utility::sleep::Start();
-		impl::Inputs::resetInput();
+		e::Inputs::resetInput();
 		tl::graphics::BeginDraw();
 		while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
 			if (message.message == WM_QUIT) {
-				impl::done = true;
+				e::done = true;
 			} else {
 				TranslateMessage(&message);
 				DispatchMessage(&message);
@@ -50,31 +50,31 @@ void tl::sge::impl::mainLoop(int(*Tick)(void)) {
 		}
 		
 		handleMouse();
-		impl::Graphics::clearScreen(impl::Graphics::backGroundColor);
-		impl::drawAll();
+		e::Graphics::clearScreen(e::Graphics::backGroundColor);
+		e::drawAll();
 		int result = Tick();
 		switch (result) {
 		case 0:
 			break;
 		default:
-			impl::done = true;
+			e::done = true;
 			break;
 		}
 		tl::graphics::EndDraw();
 
-		if (impl::done) break;
+		if (e::done) break;
 		tl::utility::sleep::End(sge::Engine::Tickrate);
 	}
 }
 
-void tl::sge::impl::drawButtons() {
-	for (const impl::ButtonData& d : buttons) {
+void tl::sge::e::drawButtons() {
+	for (const e::ButtonData& d : buttons) {
 		tl::sge::Graphics::drawRect(d.area);
 	}
 }
 
-void tl::sge::impl::drawGrids() {
-	for (const impl::GridData& d : grids) {
+void tl::sge::e::drawGrids() {
+	for (const e::GridData& d : grids) {
 		sge::Graphics::drawRect(d.area);
 		float stepX = (float)(d.area.right - d.area.left) / (float)d.width;
 		float stepY = (float)(d.area.bottom - d.area.top) / (float)d.height;
@@ -99,26 +99,26 @@ void tl::sge::impl::drawGrids() {
 	}
 }
 
-void tl::sge::impl::drawAll() {
-	impl::drawButtons();
-	impl::drawGrids();
+void tl::sge::e::drawAll() {
+	e::drawButtons();
+	e::drawGrids();
 }
 
-void tl::sge::impl::handleMouse() {//HACK needs more optimizing to support multiple clicks a tick
+void tl::sge::e::handleMouse() {//HACK needs more optimizing to support multiple clicks a tick
 	tl::graphics::setBrush(1, 0, 0, 1);
-	for (int i = 0; i < impl::Inputs::mouseDataSize; i++) {
-		ClickData& c = impl::Inputs::mouseData[i];
+	for (int i = 0; i < e::Inputs::mouseDataSize; i++) {
+		ClickData& c = e::Inputs::mouseData[i];
 		if (c.clicked == false) continue;
 		const sge::Click& click = { sge::Clicktype(i), c.location };
 		const sge::Point& p = c.location;
-		for (const tl::sge::impl::ButtonData& d : buttons) {
+		for (const tl::sge::e::ButtonData& d : buttons) {
 			if (d.area.left <= p.x && p.x <= d.area.right
 				&& d.area.top <= p.y && p.y <= d.area.bottom) {
 				const ButtonClick& temp = { d.area, click };
 				d.Func(temp);
 			}
 		}
-		for (const tl::sge::impl::GridData& d : grids) {
+		for (const tl::sge::e::GridData& d : grids) {
 			if (d.area.left <= p.x && p.x <= d.area.right
 				&& d.area.top <= p.y && p.y <= d.area.bottom) {
 				float stepX = (float)(d.area.right - d.area.left) / (float)d.width;
@@ -149,25 +149,25 @@ void tl::sge::impl::handleMouse() {//HACK needs more optimizing to support multi
 	}
 }
 
-void tl::sge::impl::MouseInput(int type, LPARAM lParam) {
-	ClickData& c = impl::Inputs::mouseData[type];
+void tl::sge::e::MouseInput(int type, LPARAM lParam) {
+	ClickData& c = e::Inputs::mouseData[type];
 	if (c.clicked == true) return;
 	c.clicked = true;
-	c.location = impl::lParamToSGEPoint(lParam);
+	c.location = e::lParamToSGEPoint(lParam);
 }
 
-auto tl::sge::impl::lParamToSGEPoint(LPARAM lParam)->tl::sge::Point {
+auto tl::sge::e::lParamToSGEPoint(LPARAM lParam)->tl::sge::Point {
 	int xPos = GET_X_LPARAM(lParam);
 	int yPos = GET_Y_LPARAM(lParam);
 	return sge::Create::Point(xPos, yPos);
 }
 
-void tl::sge::impl::Inputs::resetInput() {
+void tl::sge::e::Inputs::resetInput() {
 	for (ClickData& c : Inputs::mouseData) {
 		c.reset();
 	}
 }
 
-void tl::sge::impl::Graphics::clearScreen(Color c) {
+void tl::sge::e::Graphics::clearScreen(Color c) {
 	tl::graphics::ClearScreen(c.r, c.g, c.b);
 }

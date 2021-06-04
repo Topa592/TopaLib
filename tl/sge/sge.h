@@ -5,4 +5,4 @@
 // Doesn't contain headers such as setup.h because it should be used in just one place in the engine.
 
 #include "../ph/sge/game.h"
-#include "impl.h"
+#include "core.h"
