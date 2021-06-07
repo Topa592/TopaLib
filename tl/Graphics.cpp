@@ -45,7 +45,7 @@ void tl::graphics::DrawTriangle(float x1, float y1, float x2, float y2, float x3
 	renderTarget->DrawLine(D2D1::Point2F(x3, y3), D2D1::Point2F(x1, y1), brush, 2.0f);
 }
 
-void tl::graphics::drawText(const wchar_t* c, int length, float top, float left, float bottom, float right) {
+void tl::graphics::drawText(const wchar_t* c, const int& length, const float& top, const float& left, const float& bottom, const float& right) {
 	tl::direct2d::renderTarget->DrawTextW(
 		c,
 		length,
@@ -54,7 +54,7 @@ void tl::graphics::drawText(const wchar_t* c, int length, float top, float left,
 		tl::direct2d::brush);
 }
 
-void tl::graphics::drawText(const char* c, int length, float top, float left, float bottom, float right) {
+void tl::graphics::drawText(const char* c, const int& length, const float& top, const float& left, const float& bottom, const float& right) {
 	wchar_t *text = new wchar_t[length];
 	for (int i = 0; i < length; i++) {
 		text[i] = c[i];

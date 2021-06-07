@@ -2,7 +2,7 @@
 // Contains all headers for normal use cases and 99% time this has to be included
 // when working with the engine.
 // 
-// Doesn't contain headers such as setup.h because it should be used in just one place in the engine.
+// Doesn't contain headers such as sge/text.h since it includes std::string
 
 #include "../ph/sge/game.h"
 #include "core.h"

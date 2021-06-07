@@ -13,15 +13,29 @@ namespace tl {
 					clicked = false;
 				}
 			};
-			class Inputs {
-			public:
-				//more info in game.h Clicktype
-				//0 LDown, 1 MDown, 2 RDown, 3 LUp, 4 MUp, 5 RUp
-				inline static int mouseDataSize = 6;
-				inline static ClickData mouseData[6];
-				static void resetInput();
+			struct KeyData {
+				bool down = false;
 			};
-			void mainLoop(int (*Tick)(void));
+			namespace Inputs {
+				class Mouse {
+				public:
+					//more info in game.h Clicktype
+					//0 LDown, 1 MDown, 2 RDown, 3 LUp, 4 MUp, 5 RUp, 6 ScrollDown, 7 ScrollUp
+					inline const static int size = 8;
+					inline static ClickData data[8];
+				};
+				class Keyboard {
+				public:
+					//more info in game.h
+					inline const static int size = 256;
+					inline static KeyData keyboardData[256];
+				};
+				
+				
+				
+				static void resetInput();
+			}
+			void mainLoop();
 			struct ButtonData {
 				tl::sge::Rect area;
 				void (*Func)(sge::ButtonClick c);
@@ -32,6 +46,9 @@ namespace tl {
 				int height;
 				void (*Func)(sge::GridClick c);
 			};
+			struct FuncData {
+				void (*Func)(void);
+			};
 			class Graphics {
 			public:
 				inline static Color backGroundColor = { 0,0,0.7f };
@@ -39,6 +56,7 @@ namespace tl {
 			};
 			inline std::vector<ButtonData> buttons;
 			inline std::vector<GridData> grids;
+			inline std::vector<FuncData> funcs;
 			inline bool done = false;
 			
 			void drawButtons();

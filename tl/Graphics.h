@@ -16,8 +16,8 @@ namespace tl {
 		static void DrawCircle(float x, float y, float radius);
 		static void DrawRect(float left, float top, float right, float bottom);
 		static void DrawTriangle(float x1, float y1, float x2, float y2, float x3, float y3);
-		static void drawText(const wchar_t* c, int length, float top, float left, float bottom, float right);
-		static void drawText(const char* c, int length, float top, float left, float bottom, float right);
+		static void drawText(const wchar_t* c, const int& length, const float& top, const float& left, const float& bottom, const float& right);
+		static void drawText(const char* c, const int& length, const float& top, const float& left, const float& bottom, const float& right);
 
 		static void FillRect(float left, float top, float right, float bottom);
 

@@ -1,20 +1,34 @@
 #pragma once
-//
+#include "sgehelper.h"
 namespace tl {
 	namespace sge {
+		namespace setup {
+			//Remember to add functions with tl::sge::create::func();
+			void Run();
+			//Only necessary if calling Run(); takes too long
+			void HideConsole();
+		}
 		struct Color {
-			float r = 0, g = 0, b = 0;
-			float a = 0;
+			float r, g, b;
+			float a = 1;
+			Color() = default;
+			Color(float r, float g, float b, float a = 1);
+			Color(sge::BasicColor bc, float a = 1);
+			Color(unsigned int hexcolor, float a = 1);
 		};
 		struct Point {
 			int x;
 			int y;
+			Point() = default;
+			Point(int x, int y);
 		};
 		struct Rect {
 			int top;
 			int left;
 			int bottom;
 			int right;
+			Rect() = default;
+			Rect(int top, int left, int bottom, int right);
 		};
 		enum class Clicktype {
 			LDown = 0,
@@ -22,36 +36,37 @@ namespace tl {
 			RDown = 2,
 			LUp = 3,
 			MUp = 4,
-			RUp = 5
+			RUp = 5,
+			ScrollDown = 6,
+			ScrollUp = 7
 		};
 		struct Click {
 			Clicktype type;
 			Point location;
 		};
 		struct GridClick {
-			const Rect& clickedGridArea;
-			const int& x;
-			const int& y;
-			const Click& click;
+			Rect clickedGridArea;
+			int x;
+			int y;
+			Click click;
 		};
 		struct ButtonClick {
-			const Rect& buttonArea;
-			const Click& click;
+			Rect buttonArea;
+			Click click;
 		};
 		class Create {
 		public:
+			//static void KeyboardListener()
 			static void Grid(sge::Rect area, int width, int height, void (*Func)(GridClick c));
 			static void Button(sge::Rect area, void (*Func)(ButtonClick c));
+			static void Func(void (*Func)(void));
 			//static void ButtomSpammable(sge::Rect )
 			//static void ButtonHold(sge::Rect area, void (*Func)(sge::Point p));
 			//static void ButtonToggle(sge::Rect area);
-			static sge::Rect Rect(int top, int left, int bottom, int right);
-			static sge::Point Point(int x, int y);
-			static sge::Color Color(float r, float g, float b, float a);
 		};
 		class Engine {
 		public:
-			inline static Color Background = { 0,0,0.7f };
+			inline static Color Background = { sge::BasicColor::LightBlue, 1 };
 			inline static int Tickrate = 50;
 			void static shutdown();
 		};
@@ -67,6 +82,7 @@ namespace tl {
 			static void drawTriangle(Point p1, Point p2, Point p3);
 
 			static void fillRect(Rect r);
+			//see more advanced text writing in text.h
 			static void drawText(const wchar_t* c, int length, Rect area);
 			static void drawText(const char* c, int length, Rect area);
 		};

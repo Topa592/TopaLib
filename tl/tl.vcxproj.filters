@@ -61,12 +61,6 @@
     <Filter Include="Header Files\tlsge">
       <UniqueIdentifier>{a2a1a40f-5623-4d37-ba50-1c55aa78d845}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\tlart">
-      <UniqueIdentifier>{ad34c924-d6ac-4c76-8f16-26de52c5828e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tlart">
-      <UniqueIdentifier>{11f49960-60c3-4c96-ace5-6910c1d24339}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\tlge">
       <UniqueIdentifier>{24942123-b504-425f-a96e-a4f948ac8080}</UniqueIdentifier>
     </Filter>
@@ -84,12 +78,6 @@
     </Filter>
     <Filter Include="Header Files\tlge\ge1\ph">
       <UniqueIdentifier>{5b9f54ed-1fae-4dd9-905b-0fd76583ed83}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tlsge2">
-      <UniqueIdentifier>{2125e423-9349-414e-9354-113b53cb05c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tlsge2">
-      <UniqueIdentifier>{1b68dd86-b8b2-48bd-98cf-d1f19176947f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\ph">
       <UniqueIdentifier>{fcf16d14-2a14-47a7-98ea-a24736d7e51e}</UniqueIdentifier>
@@ -129,35 +117,26 @@
     <ClInclude Include="EventQueue.h">
       <Filter>Header Files\tl\EventQueue</Filter>
     </ClInclude>
-    <ClInclude Include="ge\ge1\ph\game.h">
-      <Filter>Header Files\tlge\ge1\ph</Filter>
-    </ClInclude>
-    <ClInclude Include="ge\geCore.h">
-      <Filter>Header Files\tlge</Filter>
-    </ClInclude>
-    <ClInclude Include="ge\ge1\ge.h">
-      <Filter>Header Files\tlge\ge1</Filter>
-    </ClInclude>
-    <ClInclude Include="ge\core.h">
-      <Filter>Header Files\tlge</Filter>
-    </ClInclude>
-    <ClInclude Include="ge\ge1\geInit.h">
-      <Filter>Header Files\tlge</Filter>
-    </ClInclude>
-    <ClInclude Include="ge\ge1\ph\setup.h">
-      <Filter>Header Files\tlge</Filter>
-    </ClInclude>
     <ClInclude Include="sge\sge.h">
       <Filter>Header Files\tlsge</Filter>
     </ClInclude>
     <ClInclude Include="ph\sge\game.h">
       <Filter>Header Files\ph\sge</Filter>
     </ClInclude>
-    <ClInclude Include="ph\sge\setup.h">
-      <Filter>Header Files\ph\sge</Filter>
-    </ClInclude>
     <ClInclude Include="sge\core.h">
       <Filter>Header Files\tlsge</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ph\sge\text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ph\sge\sgehelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Init.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -185,32 +164,17 @@
     <ClCompile Include="EventQueue.cpp">
       <Filter>Source Files\tl\EventQueue</Filter>
     </ClCompile>
-    <ClCompile Include="sge\setup.cpp">
-      <Filter>Source Files\tlsge</Filter>
-    </ClCompile>
     <ClCompile Include="sge\game.cpp">
       <Filter>Source Files\tlsge</Filter>
     </ClCompile>
-    <ClCompile Include="ge\geCore.cpp">
-      <Filter>Source Files\tlge</Filter>
-    </ClCompile>
-    <ClCompile Include="ge\ge1\ge.cpp">
-      <Filter>Source Files\tlge\ge1</Filter>
-    </ClCompile>
-    <ClCompile Include="ge\ge1\ph\game.cpp">
-      <Filter>Source Files\tlge\ge1\ph</Filter>
-    </ClCompile>
-    <ClCompile Include="ge\core.cpp">
-      <Filter>Source Files\tlge</Filter>
-    </ClCompile>
-    <ClCompile Include="ge\ge1\geInit.cpp">
-      <Filter>Source Files\tlge</Filter>
-    </ClCompile>
-    <ClCompile Include="ge\ge1\ph\setup.cpp">
-      <Filter>Source Files\tlge</Filter>
-    </ClCompile>
     <ClCompile Include="sge\engine.cpp">
       <Filter>Source Files\tlsge</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Init.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -28,13 +28,20 @@ LRESULT CALLBACK tl::sge::e::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
 	case WM_RBUTTONUP:
 		tl::sge::e::MouseInput(5, lParam);
 		return 0;
+	case WM_MOUSEWHEEL:
+	{
+		int latestLength = GET_WHEEL_DELTA_WPARAM(wParam);
+		if (latestLength < 0) tl::sge::e::MouseInput(6, lParam);
+		else if (latestLength > 0) tl::sge::e::MouseInput(7, lParam);
+		return 0;
+	}
 	case WM_DESTROY: { PostQuitMessage(0); return 0; }
 	}
 
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
-void tl::sge::e::mainLoop(int(*Tick)(void)) {
+void tl::sge::e::mainLoop() {
 	MSG message;
 	while (!e::done) {
 		tl::utility::sleep::Start();
@@ -52,16 +59,12 @@ void tl::sge::e::mainLoop(int(*Tick)(void)) {
 		handleMouse();
 		e::Graphics::clearScreen(e::Graphics::backGroundColor);
 		e::drawAll();
-		int result = Tick();
-		switch (result) {
-		case 0:
-			break;
-		default:
-			e::done = true;
-			break;
+		for (FuncData& f : e::funcs) {
+			f.Func();
 		}
-		tl::graphics::EndDraw();
 
+		//end
+		tl::graphics::EndDraw();
 		if (e::done) break;
 		tl::utility::sleep::End(sge::Engine::Tickrate);
 	}
@@ -106,8 +109,8 @@ void tl::sge::e::drawAll() {
 
 void tl::sge::e::handleMouse() {//HACK needs more optimizing to support multiple clicks a tick
 	tl::graphics::setBrush(1, 0, 0, 1);
-	for (int i = 0; i < e::Inputs::mouseDataSize; i++) {
-		ClickData& c = e::Inputs::mouseData[i];
+	for (int i = 0; i < e::Inputs::Mouse::size; i++) {
+		ClickData& c = e::Inputs::Mouse::data[i];
 		if (c.clicked == false) continue;
 		const sge::Click& click = { sge::Clicktype(i), c.location };
 		const sge::Point& p = c.location;
@@ -125,7 +128,7 @@ void tl::sge::e::handleMouse() {//HACK needs more optimizing to support multiple
 				float stepY = (float)(d.area.bottom - d.area.top) / (float)d.height;
 				int resultX = 0;
 				int resultY = 0;
-				Rect area;
+				Rect area = { 0,0,0,0 };
 				for (int x = 0; x < d.width; x++) {
 					area.left = (int)(stepX * x) + d.area.left;
 					area.right = (int)(area.left + stepX);
@@ -150,7 +153,7 @@ void tl::sge::e::handleMouse() {//HACK needs more optimizing to support multiple
 }
 
 void tl::sge::e::MouseInput(int type, LPARAM lParam) {
-	ClickData& c = e::Inputs::mouseData[type];
+	ClickData& c = e::Inputs::Mouse::data[type];
 	if (c.clicked == true) return;
 	c.clicked = true;
 	c.location = e::lParamToSGEPoint(lParam);
@@ -159,11 +162,11 @@ void tl::sge::e::MouseInput(int type, LPARAM lParam) {
 auto tl::sge::e::lParamToSGEPoint(LPARAM lParam)->tl::sge::Point {
 	int xPos = GET_X_LPARAM(lParam);
 	int yPos = GET_Y_LPARAM(lParam);
-	return sge::Create::Point(xPos, yPos);
+	return sge::Point(xPos, yPos);
 }
 
 void tl::sge::e::Inputs::resetInput() {
-	for (ClickData& c : Inputs::mouseData) {
+	for (ClickData& c : Inputs::Mouse::data) {
 		c.reset();
 	}
 }
