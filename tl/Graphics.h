@@ -1,27 +1,27 @@
 #pragma once
 
 namespace tl {
-	class graphics {
-	public:
-		static void setBrush(float r, float g, float b, float a);
+	//for more advanced graphics just use tldirect2d.h for drawing to rendertarget directly
+	namespace graphics {
+		void setBrush(float r, float g, float b, float a);
 
-		static void BeginDraw();
-		static void EndDraw();
+		void BeginDraw();
+		void EndDraw();
 
-		static void ClearScreen(float r, float g, float b);
-		static void ClearScreen();
+		void ClearScreen(float r, float g, float b);
+		void ClearScreen();
 
-		static void DrawLine(float x1, float y1, float x2, float y2);
+		void DrawLine(float x1, float y1, float x2, float y2);
 
-		static void DrawCircle(float x, float y, float radius);
-		static void DrawRect(float left, float top, float right, float bottom);
-		static void DrawTriangle(float x1, float y1, float x2, float y2, float x3, float y3);
-		static void drawText(const wchar_t* c, const int& length, const float& top, const float& left, const float& bottom, const float& right);
-		static void drawText(const char* c, const int& length, const float& top, const float& left, const float& bottom, const float& right);
+		void DrawCircle(float x, float y, float radius);
+		void DrawRect(float left, float top, float right, float bottom);
+		void DrawTriangle(float x1, float y1, float x2, float y2, float x3, float y3);
+		void drawText(const wchar_t* c, const int& length, const float& top, const float& left, const float& bottom, const float& right);
+		void drawText(const char* c, const int& length, const float& top, const float& left, const float& bottom, const float& right);
 
-		static void FillRect(float left, float top, float right, float bottom);
+		void FillRect(float left, float top, float right, float bottom);
 
-		static void BasicCircle(float x, float y);
-		static void BasicRect(float x, float y);
-	};
+		void BasicCircle(float x, float y);
+		void BasicRect(float x, float y);
+	}
 }

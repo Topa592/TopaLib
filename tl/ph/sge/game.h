@@ -1,15 +1,17 @@
 #pragma once
-#include "sgehelper.h"
+#include "old.h"
+#include "enums.h"
+#include "utility.h"
 namespace tl {
 	namespace sge {
 		namespace setup {
 			//Remember to add functions with tl::sge::create::func();
 			void Run();
-			//Only necessary if calling Run(); takes too long
-			void HideConsole();
+			//Will init at run but some features outside sge are not usable without initializing such as WIN32 api features
+			void Init();
 		}
 		struct Color {
-			float r, g, b;
+			float r = 0, g = 0, b = 0;
 			float a = 1;
 			Color() = default;
 			Color(float r, float g, float b, float a = 1);
@@ -30,6 +32,12 @@ namespace tl {
 			Rect() = default;
 			Rect(int top, int left, int bottom, int right);
 		};
+		struct Brush {
+			Color color;
+			float thickness;
+			Brush() = default;
+			Brush(Color color, float thickness);
+		};
 		enum class Clicktype {
 			LDown = 0,
 			MDown = 1,
@@ -38,7 +46,9 @@ namespace tl {
 			MUp = 4,
 			RUp = 5,
 			ScrollDown = 6,
-			ScrollUp = 7
+			ScrollUp = 7,
+			//often used for mouse moving
+			None = 8
 		};
 		struct Click {
 			Clicktype type;
@@ -54,42 +64,73 @@ namespace tl {
 			Rect buttonArea;
 			Click click;
 		};
-		class Create {
-		public:
-			//static void KeyboardListener()
-			static void Grid(sge::Rect area, int width, int height, void (*Func)(GridClick c));
-			static void Button(sge::Rect area, void (*Func)(ButtonClick c));
-			static void Func(void (*Func)(void));
-			//static void ButtomSpammable(sge::Rect )
-			//static void ButtonHold(sge::Rect area, void (*Func)(sge::Point p));
-			//static void ButtonToggle(sge::Rect area);
+		struct ButtonHold {
+			Rect buttonArea;
+			Point location;
+			//will return once up when mouse is lifted or moved out of area
+			bool down;
 		};
-		class Engine {
-		public:
-			inline static Color Background = { sge::BasicColor::LightBlue, 1 };
-			inline static int Tickrate = 50;
-			void static shutdown();
+		namespace Create {
+			void MouseListener(void (*Func)(Click c));
+			void MouseListener(void (*Func)(Click c), sge::Rect area);
+			void Grid(sge::Rect area, int width, int height, void (*Func)(GridClick c));
+			void Button(sge::Rect area, void (*Func)(ButtonClick c));
+			void Func(void (*Func)(void));
+			//void ButtomSpammable(sge::Rect )
+			void HoldButton(sge::Rect area, void (*Func)(ButtonHold p));
+			//void ButtonToggle(sge::Rect area);
 		};
-		class Graphics {
-		public:
-			static void setBrush(Color c);
-			static void setBackground(Color c);
+		namespace Engine {
+			inline Color Background = { sge::BasicColor::LightBlue, 1 };
+			inline int Tickrate = 50;
+			void shutdown();
+		};
+		namespace Graphics {
+			void setBrush(Color c);
+			void setBackground(Color c);
 
-			static void drawLine(Point p1, Point p2);
+			void drawLine(Point p1, Point p2);
 
-			static void drawCircle(Point p, float radius);
-			static void drawRect(Rect r);
-			static void drawTriangle(Point p1, Point p2, Point p3);
+			void drawCircle(Point p, float radius);
+			void drawRect(Rect r);
+			void drawTriangle(Point p1, Point p2, Point p3);
 
-			static void fillRect(Rect r);
+			void fillRect(Rect r);
 			//see more advanced text writing in text.h
-			static void drawText(const wchar_t* c, int length, Rect area);
-			static void drawText(const char* c, int length, Rect area);
+			void drawText(const wchar_t* c, int length, Rect area);
+			void drawText(const char* c, int length, Rect area);
 		};
-		class Input {
+		class Canvas {
+		private:
+			class Impl; Impl* impl;
+			Color background = Color(sge::BasicColor::White, 0);
+			Brush brush = Brush(Color(sge::BasicColor::Black), 1);
 		public:
-			static bool ifKeyDown(char c);
-			static bool ifKeyUp(char c);
+			Canvas();
+			~Canvas();
+			//offset from point topleft
+			Rect drawArea = { 0,0,100,100 };
+			Point topLeft = { 150,150 };
+			//used to move current drawing area
+			Point offset = { 0,0 };
+
+			void beginDraw();
+			void endDraw();
+
+			void setBrush(Brush brush);
+			//set a (alpha) to 0 to not have background color
+			void setBackground(Color c);
+
+			void drawLine(Point p1, Point p2);
+
+			void drawCircle(Point p, float heigth, float width);
+			void drawRect(Rect r);
+			void drawTriangle(Point p1, Point p2, Point p3);
+
+			void fillRect(Rect r);
+			//see more advanced text writing in text.h
+			void drawText(const wchar_t* c, int length, Rect area);
+			void drawText(const char* c, int length, Rect area);
 		};
 	}
 }

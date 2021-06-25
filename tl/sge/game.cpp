@@ -4,16 +4,26 @@
 #include "../tldirect2d.h"
 #include "../tlwindows.h"
 #include <dwrite.h>
+#include <cstdlib>
 using namespace tl;
 
+namespace impl {
+	namespace {
+		bool ifNotInit = true;
+	}
+}
+
 void tl::sge::setup::Run() {
-	setup::HideConsole();
-	tl::windows::InitDirect2DWindow(tl::sge::e::WindowProc);
+	setup::Init();
 	e::mainLoop();
 }
 
-void tl::sge::setup::HideConsole() {
-	ShowWindow(GetConsoleWindow(), SW_HIDE);
+void tl::sge::setup::Init() {
+	if (impl::ifNotInit) {
+		impl::ifNotInit = false;
+		tl::windows::HideConsole();
+		tl::windows::InitDirect2DWindow(tl::sge::e::WindowProc);
+	}
 }
 
 void tl::sge::Graphics::setBrush(Color c) {
@@ -53,38 +63,34 @@ void tl::sge::Graphics::drawText(const char* c, int length, Rect r) {
 	tl::graphics::drawText(c, length, (float)r.top, (float)r.left, (float)r.bottom, (float)r.right);
 }
 
+void tl::sge::Create::MouseListener(void(*Func)(Click c)) {}
+
+void tl::sge::Create::MouseListener(void(*Func)(Click c), sge::Rect area) {}
+
 void tl::sge::Create::Grid(sge::Rect area, int width, int height, void(*Func)(GridClick c)) {
 	e::GridData temp = { area, width, height, Func };
-	e::grids.push_back(temp);
+	e::grids::addStatic(temp);
 }
 
 void tl::sge::Create::Button(sge::Rect area, void(*Func)(ButtonClick c)) {
 	e::ButtonData temp = { area, Func };
-	e::buttons.push_back(temp);
+	e::buttons::addStatic(temp);
 }
 
 void tl::sge::Create::Func(void(*Func)(void)) {
-	e::funcs.push_back({ Func });
+	e::FuncData temp = { Func };
+	e::functions::addStatic(temp);
+}
+
+void tl::sge::Create::HoldButton(sge::Rect area, void(*Func)(ButtonHold p)) {
+
 }
 
 void tl::sge::Engine::shutdown() {
 	e::done = true;
 }
 
-bool tl::sge::Input::ifKeyDown(char c) {
-	return false;
-}
-
-bool tl::sge::Input::ifKeyUp(char c) {
-	return false;
-}
-
-tl::sge::Color::Color(float r, float g, float b, float a) {
-	this->r = r;
-	this->g = g;
-	this->b = b;
-	this->a = a;
-}
+tl::sge::Color::Color(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) {}
 
 tl::sge::Color::Color(sge::BasicColor bc, float a) {
 	const unsigned int hexcolor = static_cast<unsigned int>(bc);
@@ -113,14 +119,126 @@ tl::sge::Color::Color(unsigned int hexcolor, float a) {
 	this->a = a;
 }
 
-tl::sge::Point::Point(int x, int y) {
-	this->x = x;
-	this->y = y;
+tl::sge::Point::Point(int x, int y) : x(x), y(y) {}
+
+tl::sge::Rect::Rect(int top, int left, int bottom, int right) : top(top), left(left), bottom(bottom), right(right) {}
+
+tl::sge::Brush::Brush(Color color, float thickness) {
+	this->color = color;
+	this->thickness = thickness;
 }
 
-tl::sge::Rect::Rect(int top, int left, int bottom, int right) {
-	this->top = top;
-	this->left = left;
-	this->bottom = bottom;
-	this->right = right;
+class tl::sge::Canvas::Impl {
+public:
+	D2D1_RECT_F area = D2D1::RectF();
+	ID2D1SolidColorBrush* brush = NULL;
+	bool changed = true;
+	Impl() {
+		
+	}
+	~Impl() {
+		if (brush) brush->Release();
+	}
+	void setArea(sge::Rect drawArea) {
+		area = this->d2d(drawArea);
+	}
+	void setoffset(Point& p, const Point& offset) {
+		p.x += offset.x;
+		p.y += offset.y;
+	}
+	void setoffset(Rect& r, const Point& offset) {
+		r.left += offset.x;
+		r.right += offset.x;
+		r.top += offset.y;
+		r.bottom += offset.y;
+	}
+	D2D1_POINT_2F d2d(const Point& p) {
+		return D2D1::Point2F((float)p.x, (float)p.y);
+	}
+	D2D1_RECT_F d2d(const Rect& r) {
+		return D2D1::RectF((float)r.left, (float)r.top, (float)r.right, (float)r.bottom);
+	}
+};
+
+tl::sge::Canvas::Canvas() : impl(new Impl) {}
+
+tl::sge::Canvas::~Canvas() {
+	delete impl;
+}
+
+void tl::sge::Canvas::beginDraw() {
+	static bool firstTime = true;
+	if (firstTime) {
+		HRESULT res = tl::direct2d::renderTarget->CreateSolidColorBrush(D2D1::ColorF(0, 0, 0, 0), &impl->brush);
+		if (res != S_OK) std::exit(EXIT_SUCCESS);
+		firstTime = false;
+	}
+	impl->setArea(this->drawArea);
+	ID2D1RenderTarget* r = tl::direct2d::renderTarget;
+	r->PushAxisAlignedClip(&impl->area, D2D1_ANTIALIAS_MODE_PER_PRIMITIVE);
+	const Color& c = this->background;
+	if (c.a != 0) r->Clear(D2D1::ColorF(c.r, c.g, c.b));
+	if (impl->changed) {
+		const Color& c = this->brush.color;
+		impl->brush->SetColor(D2D1::ColorF(c.r, c.g, c.b, c.a));
+		impl->changed = false;
+	}
+}
+
+void tl::sge::Canvas::endDraw() {
+	tl::direct2d::renderTarget->PopAxisAlignedClip();
+}
+
+void tl::sge::Canvas::setBrush(Brush b) {
+	this->brush = b;
+	impl->changed = true;
+}
+
+void tl::sge::Canvas::setBackground(Color c) {
+	this->background = c;
+}
+
+void tl::sge::Canvas::drawLine(Point p1, Point p2) {
+	auto& r = tl::direct2d::renderTarget;
+	impl->setoffset(p1, offset);
+	impl->setoffset(p2, offset);
+	r->DrawLine(impl->d2d(p1), impl->d2d(p2), impl->brush, this->brush.thickness);
+}
+
+void tl::sge::Canvas::drawCircle(Point p, float heigth, float width) {
+	auto& r = tl::direct2d::renderTarget;
+	impl->setoffset(p, offset);
+	r->DrawEllipse(D2D1::Ellipse(impl->d2d(p), width, heigth), impl->brush, this->brush.thickness);
+}
+
+void tl::sge::Canvas::drawRect(Rect rect) {
+	auto& r = tl::direct2d::renderTarget;
+	impl->setoffset(rect, offset);
+	r->DrawRectangle(impl->d2d(rect), impl->brush, this->brush.thickness);
+}
+
+void tl::sge::Canvas::drawTriangle(Point p1, Point p2, Point p3) {
+	this->drawLine(p3, p1);
+	this->drawLine(p1, p2);
+	this->drawLine(p2, p3);
+}
+
+void tl::sge::Canvas::fillRect(Rect rect) {
+	auto& r = tl::direct2d::renderTarget;
+	impl->setoffset(rect, offset);
+	r->FillRectangle(impl->d2d(rect), impl->brush);
+}
+
+#include "../GraphicsA.h"
+
+void tl::sge::Canvas::drawText(const wchar_t* c, int length, Rect area) {
+	impl->setoffset(area, this->offset);
+	tl::graphicsA::drawText(tl::direct2d::renderTarget, impl->brush, c, length
+		, (float)area.top, (float)area.left, (float)area.bottom, (float)area.right);
+}
+
+void tl::sge::Canvas::drawText(const char* c, int length, Rect area) {
+	impl->setoffset(area, this->offset);
+	tl::graphicsA::drawText(tl::direct2d::renderTarget, impl->brush, c, length
+		, (float)area.top, (float)area.left, (float)area.bottom, (float)area.right);
 }

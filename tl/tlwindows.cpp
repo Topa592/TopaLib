@@ -8,7 +8,6 @@ HWND tl::windows::InitWindow(WNDPROC WindowProc) {
 }
 
 HWND tl::windows::InitWindow(WNDPROC WindowProc, RECT windowSize, const wchar_t* title) {
-	ShowWindow(GetConsoleWindow(), SW_HIDE);
 	WNDCLASSEX windowclass;
 	ZeroMemory(&windowclass, sizeof(WNDCLASSEX));
 	windowclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
@@ -41,4 +40,12 @@ void tl::windows::InitDirect2DWindow(WNDPROC WindowProc, RECT windowSize, const 
 	if (!windowHandle) std::exit(EXIT_FAILURE);
 	if (!tl::direct2d::Init(windowHandle)) std::exit(EXIT_FAILURE);
 	tl::graphics::setBrush(1, 0, 0, 1);
+}
+
+void tl::windows::HideConsole() {
+	ShowWindow(GetConsoleWindow(), SW_HIDE);
+}
+
+void tl::windows::SetTitle(const wchar_t* title) {
+	SetWindowTextW(GetActiveWindow(), title);
 }

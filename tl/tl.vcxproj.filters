@@ -19,9 +19,6 @@
     <Filter Include="Header Files\tl\Datatypes">
       <UniqueIdentifier>{31787242-ae39-4639-8a28-326e5456b2c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\tl\EventQueue">
-      <UniqueIdentifier>{9e281bcc-62f3-4790-8c69-d9eb080e8446}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\tl\Graphics">
       <UniqueIdentifier>{1f12e9c6-80ca-4530-b078-bfdc9aa1b68f}</UniqueIdentifier>
     </Filter>
@@ -40,9 +37,6 @@
     <Filter Include="Source Files\tl">
       <UniqueIdentifier>{4510e9fa-5f8b-4e81-9cb6-55f6d5bd401e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\tl\EventQueue">
-      <UniqueIdentifier>{d30ab774-e183-45ee-a867-7833efde3b1a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\tl\Graphics">
       <UniqueIdentifier>{ecc59cbd-5002-4e2a-868f-c8eed74d66ec}</UniqueIdentifier>
     </Filter>
@@ -60,24 +54,6 @@
     </Filter>
     <Filter Include="Header Files\tlsge">
       <UniqueIdentifier>{a2a1a40f-5623-4d37-ba50-1c55aa78d845}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tlge">
-      <UniqueIdentifier>{24942123-b504-425f-a96e-a4f948ac8080}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tlge\ge1">
-      <UniqueIdentifier>{872b1b12-3d41-4b4a-9acb-eb0ac95255c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tlge">
-      <UniqueIdentifier>{b478afe0-f640-40a2-97b9-ca6d30707cd1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tlge\ge1">
-      <UniqueIdentifier>{a2bf7b0d-776e-430d-871e-9ddbbd8f266b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tlge\ge1\ph">
-      <UniqueIdentifier>{d37181c5-725a-4294-9ca3-55148a445b9c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tlge\ge1\ph">
-      <UniqueIdentifier>{5b9f54ed-1fae-4dd9-905b-0fd76583ed83}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\ph">
       <UniqueIdentifier>{fcf16d14-2a14-47a7-98ea-a24736d7e51e}</UniqueIdentifier>
@@ -114,9 +90,6 @@
     <ClInclude Include="Impl.h">
       <Filter>Header Files\tl\Impl</Filter>
     </ClInclude>
-    <ClInclude Include="EventQueue.h">
-      <Filter>Header Files\tl\EventQueue</Filter>
-    </ClInclude>
     <ClInclude Include="sge\sge.h">
       <Filter>Header Files\tlsge</Filter>
     </ClInclude>
@@ -127,15 +100,24 @@
       <Filter>Header Files\tlsge</Filter>
     </ClInclude>
     <ClInclude Include="Text.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\tl\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="ph\sge\text.h">
+      <Filter>Header Files\tlsge</Filter>
+    </ClInclude>
+    <ClInclude Include="ph\sge\enums.h">
+      <Filter>Header Files\tlsge</Filter>
+    </ClInclude>
+    <ClInclude Include="ph\sge\utility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ph\sge\sgehelper.h">
+    <ClInclude Include="GraphicsA.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Init.h">
+    <ClInclude Include="sge\engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ph\sge\old.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -161,19 +143,25 @@
     <ClCompile Include="Mouse.cpp">
       <Filter>Source Files\tl\Input</Filter>
     </ClCompile>
-    <ClCompile Include="EventQueue.cpp">
-      <Filter>Source Files\tl\EventQueue</Filter>
-    </ClCompile>
     <ClCompile Include="sge\game.cpp">
       <Filter>Source Files\tlsge</Filter>
     </ClCompile>
-    <ClCompile Include="sge\engine.cpp">
-      <Filter>Source Files\tlsge</Filter>
-    </ClCompile>
     <ClCompile Include="Text.cpp">
+      <Filter>Source Files\tl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\core.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Init.cpp">
+    <ClCompile Include="sge\utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilityWindows.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

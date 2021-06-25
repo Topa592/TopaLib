@@ -153,16 +153,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Datatypes.h" />
-    <ClInclude Include="EventQueue.h" />
-    <ClInclude Include="Init.h" />
+    <ClInclude Include="GraphicsA.h" />
     <ClInclude Include="ph\sge\game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Impl.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Mouse.h" />
-    <ClInclude Include="ph\sge\sgehelper.h" />
+    <ClInclude Include="ph\sge\enums.h" />
+    <ClInclude Include="ph\sge\old.h" />
     <ClInclude Include="ph\sge\text.h" />
+    <ClInclude Include="ph\sge\utility.h" />
     <ClInclude Include="sge\core.h" />
+    <ClInclude Include="sge\engine.h" />
     <ClInclude Include="sge\sge.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="tldirect2d.h" />
@@ -171,17 +173,19 @@
     <ClInclude Include="WindowProc.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="Graphics.cpp" />
-    <ClCompile Include="Init.cpp" />
+    <ClCompile Include="GraphicsA.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Mouse.cpp" />
-    <ClCompile Include="sge\game.cpp" />
     <ClCompile Include="sge\engine.cpp" />
+    <ClCompile Include="sge\game.cpp" />
+    <ClCompile Include="sge\core.cpp" />
+    <ClCompile Include="sge\utility.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="tldirect2d.cpp" />
     <ClCompile Include="tlwindows.cpp" />
     <ClCompile Include="UtilitySleep.cpp" />
+    <ClCompile Include="UtilityWindows.cpp" />
     <ClCompile Include="WindowProc.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

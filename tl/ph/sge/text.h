@@ -3,7 +3,7 @@
 #include <string>
 namespace tl {
 	namespace sge {
-		enum Fontsize {
+		enum class Fontsize {
 			small = 0,
 			medium = 1,
 			big = 2,
@@ -15,7 +15,7 @@ namespace tl {
 		};
 		class Text {
 		public:
-			enum Size {
+			enum class Size {
 				small = 0,
 				medium = 1,
 				big = 2,

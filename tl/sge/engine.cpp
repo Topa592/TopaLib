@@ -3,7 +3,9 @@
 #include "../WindowProc.h"
 #include "../Utility.h"
 #include "../Graphics.h"
+#include "../tlwindows.h"
 #include <windowsx.h>
+#include <string>
 
 LRESULT CALLBACK tl::sge::e::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	switch (uMsg) {
@@ -11,30 +13,29 @@ LRESULT CALLBACK tl::sge::e::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
 		tl::windowProc::resize(lParam);
 		return 0;
 	case WM_LBUTTONDOWN:
-		tl::sge::e::MouseInput(0, lParam);
+		e::MouseInput(0, lParam);
 		return 0;
 	case WM_MBUTTONDOWN:
-		tl::sge::e::MouseInput(1, lParam);
+		e::MouseInput(1, lParam);
 		return 0;
 	case WM_RBUTTONDOWN:
-		tl::sge::e::MouseInput(2, lParam);
+		e::MouseInput(2, lParam);
 		return 0;
 	case WM_LBUTTONUP:
-		tl::sge::e::MouseInput(3, lParam);
+		e::MouseInput(3, lParam);
 		return 0;
 	case WM_MBUTTONUP:
-		tl::sge::e::MouseInput(4, lParam);
+		e::MouseInput(4, lParam);
 		return 0;
 	case WM_RBUTTONUP:
-		tl::sge::e::MouseInput(5, lParam);
+		e::MouseInput(5, lParam);
 		return 0;
 	case WM_MOUSEWHEEL:
-	{
-		int latestLength = GET_WHEEL_DELTA_WPARAM(wParam);
-		if (latestLength < 0) tl::sge::e::MouseInput(6, lParam);
-		else if (latestLength > 0) tl::sge::e::MouseInput(7, lParam);
+		e::MouseScroll(wParam, lParam);
 		return 0;
-	}
+	case WM_MOUSEMOVE:
+		e::MouseInput(8, lParam);
+		return 0;
 	case WM_DESTROY: { PostQuitMessage(0); return 0; }
 	}
 
@@ -43,8 +44,11 @@ LRESULT CALLBACK tl::sge::e::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
 
 void tl::sge::e::mainLoop() {
 	MSG message;
+	tl::utility::ConsistantSleep sleep;
+	tl::utility::Timer fpsMeter;
+	int frameCount = 0;
 	while (!e::done) {
-		tl::utility::sleep::Start();
+		sleep.Start();
 		e::Inputs::resetInput();
 		tl::graphics::BeginDraw();
 		while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
@@ -55,108 +59,45 @@ void tl::sge::e::mainLoop() {
 				DispatchMessage(&message);
 			}
 		}
-		
-		handleMouse();
 		e::Graphics::clearScreen(e::Graphics::backGroundColor);
-		e::drawAll();
-		for (FuncData& f : e::funcs) {
-			f.Func();
-		}
+		//start
 
+		e::grids::drawAll();
+		e::buttons::drawAll();
+		e::Inputs::handleInput();
+		e::functions::runAll();
+		
 		//end
 		tl::graphics::EndDraw();
 		if (e::done) break;
-		tl::utility::sleep::End(sge::Engine::Tickrate);
-	}
-}
-
-void tl::sge::e::drawButtons() {
-	for (const e::ButtonData& d : buttons) {
-		tl::sge::Graphics::drawRect(d.area);
-	}
-}
-
-void tl::sge::e::drawGrids() {
-	for (const e::GridData& d : grids) {
-		sge::Graphics::drawRect(d.area);
-		float stepX = (float)(d.area.right - d.area.left) / (float)d.width;
-		float stepY = (float)(d.area.bottom - d.area.top) / (float)d.height;
-		sge::Point p1;
-		sge::Point p2;
-		p1.y = d.area.top;
-		p2.y = d.area.bottom;
-		for (int x = 1; x < d.width; x++) {
-			int left = (int)(stepX * x + d.area.left);
-			p1.x = left;
-			p2.x = left;
-			sge::Graphics::drawLine(p1, p2);
+		frameCount++;
+		if (fpsMeter.ifTimeReset(1000)) {
+			tl::windows::SetTitle(std::to_wstring(frameCount).c_str());
+			frameCount = 0;
 		}
-		p1.x = d.area.left;
-		p2.x = d.area.right;
-		for (int y = 1; y < d.height; y++) {
-			int top = (int)(stepY * y + d.area.top);
-			p1.y = top;
-			p2.y = top;
-			sge::Graphics::drawLine(p1, p2);
-		}
+		sleep.End(sge::Engine::Tickrate);
 	}
 }
 
-void tl::sge::e::drawAll() {
-	e::drawButtons();
-	e::drawGrids();
-}
-
-void tl::sge::e::handleMouse() {//HACK needs more optimizing to support multiple clicks a tick
+void tl::sge::e::Inputs::mouse::processActions() { //HACK needs more optimizing to support multiple clicks a tick
 	tl::graphics::setBrush(1, 0, 0, 1);
-	for (int i = 0; i < e::Inputs::Mouse::size; i++) {
-		ClickData& c = e::Inputs::Mouse::data[i];
-		if (c.clicked == false) continue;
-		const sge::Click& click = { sge::Clicktype(i), c.location };
-		const sge::Point& p = c.location;
-		for (const tl::sge::e::ButtonData& d : buttons) {
-			if (d.area.left <= p.x && p.x <= d.area.right
-				&& d.area.top <= p.y && p.y <= d.area.bottom) {
-				const ButtonClick& temp = { d.area, click };
-				d.Func(temp);
-			}
-		}
-		for (const tl::sge::e::GridData& d : grids) {
-			if (d.area.left <= p.x && p.x <= d.area.right
-				&& d.area.top <= p.y && p.y <= d.area.bottom) {
-				float stepX = (float)(d.area.right - d.area.left) / (float)d.width;
-				float stepY = (float)(d.area.bottom - d.area.top) / (float)d.height;
-				int resultX = 0;
-				int resultY = 0;
-				Rect area = { 0,0,0,0 };
-				for (int x = 0; x < d.width; x++) {
-					area.left = (int)(stepX * x) + d.area.left;
-					area.right = (int)(area.left + stepX);
-					if (area.left <= p.x && p.x <= area.right) {
-						resultX = x;
-						break;
-					}
-				}
-				for (int y = 0; y < d.height; y++) {
-					area.top = (int)(stepY * y) + d.area.top;
-					area.bottom = (int)(area.top + stepY);
-					if (area.top <= p.y && p.y <= area.bottom) {
-						resultY = y;
-						break;
-					}
-				}
-				const GridClick& temp = { area, resultX, resultY, click };
-				d.Func(temp);
-			}
-		}
-	}
+	mouse::processButtons();
+	mouse::processGrids();
 }
 
-void tl::sge::e::MouseInput(int type, LPARAM lParam) {
-	ClickData& c = e::Inputs::Mouse::data[type];
-	if (c.clicked == true) return;
-	c.clicked = true;
-	c.location = e::lParamToSGEPoint(lParam);
+void tl::sge::e::MouseInput(const int& type, LPARAM lParam) {
+	e::Inputs::mouse::Input(type, lParam);
+	e::Mouse::update(Clicktype(type), lParam);
+}
+
+void tl::sge::e::MouseScroll(const WPARAM& wParam, const LPARAM& lParam) {
+	int latestLength = GET_WHEEL_DELTA_WPARAM(wParam);
+	int type = 0;
+	if (latestLength < 0) type = 6;
+	else if (latestLength > 0) type = 7;
+	else return;
+	e::Inputs::mouse::Scroll(type, lParam);
+	e::Mouse::update(tl::sge::Clicktype(type), lParam);
 }
 
 auto tl::sge::e::lParamToSGEPoint(LPARAM lParam)->tl::sge::Point {
@@ -165,8 +106,27 @@ auto tl::sge::e::lParamToSGEPoint(LPARAM lParam)->tl::sge::Point {
 	return sge::Point(xPos, yPos);
 }
 
+auto tl::sge::e::getClientPos() -> tl::sge::Point {
+	int x = 0, y = 0;
+	tl::utility::windows::GetClientPos(x, y);
+	return Point(x, y);
+}
+
+auto tl::sge::e::scrollToSGEPoint(LPARAM lParam) -> tl::sge::Point {
+	tl::sge::Point p;
+	p = tl::sge::e::lParamToSGEPoint(lParam);
+	tl::sge::Point windowpos = tl::sge::e::getClientPos();
+	p.x -= windowpos.x;
+	p.y -= windowpos.y;
+	return p;
+}
+
+void tl::sge::e::Inputs::handleInput() {
+	e::Inputs::mouse::processActions();
+}
+
 void tl::sge::e::Inputs::resetInput() {
-	for (ClickData& c : Inputs::Mouse::data) {
+	for (ClickData& c : Inputs::mouse::data) {
 		c.reset();
 	}
 }
