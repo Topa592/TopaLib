@@ -6,6 +6,7 @@
 #include "../tlwindows.h"
 #include <windowsx.h>
 #include <string>
+#include "buttons.h"
 
 LRESULT CALLBACK tl::sge::e::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	switch (uMsg) {
@@ -47,6 +48,7 @@ void tl::sge::e::mainLoop() {
 	tl::utility::ConsistantSleep sleep;
 	tl::utility::Timer fpsMeter;
 	int frameCount = 0;
+	e::InitButtons();
 	while (!e::done) {
 		sleep.Start();
 		e::Inputs::resetInput();
@@ -62,8 +64,6 @@ void tl::sge::e::mainLoop() {
 		e::Graphics::clearScreen(e::Graphics::backGroundColor);
 		//start
 
-		e::grids::drawAll();
-		e::buttons::drawAll();
 		e::Inputs::handleInput();
 		e::functions::runAll();
 		
@@ -81,8 +81,11 @@ void tl::sge::e::mainLoop() {
 
 void tl::sge::e::Inputs::mouse::processActions() { //HACK needs more optimizing to support multiple clicks a tick
 	tl::graphics::setBrush(1, 0, 0, 1);
-	mouse::processButtons();
-	mouse::processGrids();
+	for (int i = 0; i < e::Inputs::mouse::size; i++) {
+		const ClickData& c = e::Inputs::mouse::data[i];
+		if (c.clicked == false) continue;
+		e::mouseListeners::runAll(c.click);
+	}
 }
 
 void tl::sge::e::MouseInput(const int& type, LPARAM lParam) {

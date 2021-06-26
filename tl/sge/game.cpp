@@ -1,3 +1,4 @@
+#include "game_in.h"
 #include "sge.h"
 #include <Windows.h>
 #include "../Graphics.h"
@@ -63,27 +64,23 @@ void tl::sge::Graphics::drawText(const char* c, int length, Rect r) {
 	tl::graphics::drawText(c, length, (float)r.top, (float)r.left, (float)r.bottom, (float)r.right);
 }
 
-void tl::sge::Create::MouseListener(void(*Func)(Click c)) {}
+void tl::sge::Create::MouseListener(void(*Func)(Click c)) {
+	e::mouseListeners::addStatic(Func);
+}
 
-void tl::sge::Create::MouseListener(void(*Func)(Click c), sge::Rect area) {}
-
+#include "buttons.h"
 void tl::sge::Create::Grid(sge::Rect area, int width, int height, void(*Func)(GridClick c)) {
 	e::GridData temp = { area, width, height, Func };
-	e::grids::addStatic(temp);
+	e::CreateStaticGrid(temp);
 }
 
 void tl::sge::Create::Button(sge::Rect area, void(*Func)(ButtonClick c)) {
 	e::ButtonData temp = { area, Func };
-	e::buttons::addStatic(temp);
+	e::CreateStaticButton(temp);
 }
 
 void tl::sge::Create::Func(void(*Func)(void)) {
-	e::FuncData temp = { Func };
-	e::functions::addStatic(temp);
-}
-
-void tl::sge::Create::HoldButton(sge::Rect area, void(*Func)(ButtonHold p)) {
-
+	e::functions::addStatic(Func);
 }
 
 void tl::sge::Engine::shutdown() {

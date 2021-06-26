@@ -72,12 +72,12 @@ namespace tl {
 		};
 		namespace Create {
 			void MouseListener(void (*Func)(Click c));
-			void MouseListener(void (*Func)(Click c), sge::Rect area);
+			//void MouseListener(void (*Func)(Click c), sge::Rect area); //TODO toimivaks
 			void Grid(sge::Rect area, int width, int height, void (*Func)(GridClick c));
 			void Button(sge::Rect area, void (*Func)(ButtonClick c));
 			void Func(void (*Func)(void));
 			//void ButtomSpammable(sge::Rect )
-			void HoldButton(sge::Rect area, void (*Func)(ButtonHold p));
+			//void HoldButton(sge::Rect area, void (*Func)(ButtonHold p));
 			//void ButtonToggle(sge::Rect area);
 		};
 		namespace Engine {

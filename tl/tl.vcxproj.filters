@@ -120,6 +120,12 @@
     <ClInclude Include="ph\sge\old.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sge\game_in.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\buttons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics.cpp">
@@ -162,6 +168,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UtilityWindows.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\buttons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

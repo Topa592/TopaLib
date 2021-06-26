@@ -20,8 +20,6 @@ namespace tl::sge::e {
 	};
 	namespace Inputs {
 		namespace mouse {
-			void processButtons();
-			void processGrids();
 			void processActions();
 			inline const int size = 8;
 			//more info in game.h Clicktype
@@ -48,45 +46,18 @@ namespace tl::sge::e {
 		void resetInput();
 	}
 	void mainLoop();
-	struct ButtonData {
-		tl::sge::Rect area;
-		void (*Func)(sge::ButtonClick c);
-	};
-	struct GridData {
-		tl::sge::Rect area;
-		int width;
-		int height;
-		void (*Func)(sge::GridClick c);
-	};
-	struct ButtonHoldData {
-		tl::sge::Rect area;
-		void (*Func)(sge::ButtonHold c);
-	};
-	struct FuncData {
-		void (*Func)(void);
-	};
+	
 	namespace Graphics {
 		inline Color backGroundColor = { 0,0,0.7f };
 		void clearScreen(Color c);
 	}
-	namespace buttons {
-		void addStatic(ButtonData button);
-		void drawAll();
-		void run(const ClickData& c);
-	}
-	namespace grids {
-		void addStatic(GridData grid);
-		void drawAll();
-		void run(const ClickData& c);
-	}
 	namespace functions {
-		void addStatic(FuncData func);
+		void addStatic(void (*Func)(void));
 		void runAll();
 	}
-	namespace holdButtons {
-		void addStatic(ButtonHoldData buttonHold);
-		void drawAll();
-		void run(const ClickData& c);
+	namespace mouseListeners {
+		void addStatic(void (*Func)(tl::sge::Click c));
+		void runAll(const Click& click);
 	}
 	namespace Mouse {
 		void update(const tl::sge::Clicktype& c, const LPARAM& lParam);
