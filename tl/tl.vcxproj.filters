@@ -120,10 +120,19 @@
     <ClInclude Include="ph\sge\old.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sge\game_in.h">
+    <ClInclude Include="sge\buttons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sge\buttons.h">
+    <ClInclude Include="sge\sgeinit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\sgeinit_in.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sge\datatypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -171,6 +180,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sge\buttons.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\sgeinit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sge\input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

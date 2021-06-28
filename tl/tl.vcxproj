@@ -165,9 +165,12 @@
     <ClInclude Include="ph\sge\utility.h" />
     <ClInclude Include="sge\buttons.h" />
     <ClInclude Include="sge\core.h" />
+    <ClInclude Include="sge\datatypes.h" />
     <ClInclude Include="sge\engine.h" />
-    <ClInclude Include="sge\game_in.h" />
+    <ClInclude Include="sge\input.h" />
     <ClInclude Include="sge\sge.h" />
+    <ClInclude Include="sge\sgeinit.h" />
+    <ClInclude Include="sge\sgeinit_in.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="tldirect2d.h" />
     <ClInclude Include="tlwindows.h" />
@@ -183,6 +186,8 @@
     <ClCompile Include="sge\engine.cpp" />
     <ClCompile Include="sge\game.cpp" />
     <ClCompile Include="sge\core.cpp" />
+    <ClCompile Include="sge\input.cpp" />
+    <ClCompile Include="sge\sgeinit.cpp" />
     <ClCompile Include="sge\utility.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="tldirect2d.cpp" />

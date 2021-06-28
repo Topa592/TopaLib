@@ -20,19 +20,25 @@ using namespace tl::sge;
 namespace tl::sge::e::functions {
 	namespace impl {
 		namespace {
-			std::vector<void (*)(void)> funcs;
+			constexpr int size = 5;
+			//std::vector<void (*)(void)> funcs;
+			std::vector<void (*)(void)> funcs[size];
 		}
 	}
 }
 
-void e::functions::addStatic(void (*Func)(void)) {
-	impl::funcs.push_back(Func);
+void e::functions::addStatic(void (*Func)(void), int order) {
+	if (order < 0 || impl::size < order) return;
+	impl::funcs[order].push_back(Func);
+	//impl::funcs.push_back(Func);
 }
 
 void e::functions::runAll() {
-	size_t size = impl::funcs.size();
-	for (size_t i = 0; i < size; i++) {
-		impl::funcs[i]();
+	for (auto& funcs : impl::funcs) {
+		size_t size = funcs.size();
+		for (size_t i = 0; i < size; i++) {
+			funcs[i]();
+		}
 	}
 }
 
@@ -64,13 +70,13 @@ namespace tl::sge::e::Mouse {
 }
 
 void tl::sge::e::Mouse::update(const tl::sge::Clicktype& c, const LPARAM& lParam) {
-	impl::RawInput updating = impl::rawinputs[static_cast<int>(c)];
+	impl::RawInput& updating = impl::rawinputs[static_cast<int>(c)];
 	updating.ifChanged = true;
 	updating.lParam = lParam;
 }
 
 tl::sge::Click tl::sge::e::Mouse::getLatestClick(const tl::sge::Clicktype c) {
-	impl::RawInput latest = impl::rawinputs[static_cast<int>(c)];
+	impl::RawInput& latest = impl::rawinputs[static_cast<int>(c)];
 	if (latest.ifChanged) {
 		latest.ifChanged = false;
 		const Clicktype& type = latest.click.type;
@@ -105,7 +111,7 @@ void tl::sge::e::mouseListeners::addStatic(void(*Func)(tl::sge::Click c)) {
 }
 
 void tl::sge::e::mouseListeners::runAll(const Click& click) {
-	const int size = mouselisteners.size();
+	const auto& size = mouselisteners.size();
 	for (int i = 0; i < size; i++) {
 		mouselisteners[i](click);
 	}

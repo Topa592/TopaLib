@@ -5,19 +5,7 @@
 #include <memory>
 namespace tl::sge::e {
 	LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-	struct ClickData {
-		bool clicked = false;
-		Click click;
-		void reset() {
-			clicked = false;
-		}
-		ClickData(Clicktype c) {
-			click.type = c;
-		}
-	};
-	struct KeyData {
-		bool down = false;
-	};
+	
 	namespace Inputs {
 		namespace mouse {
 			void processActions();
@@ -36,11 +24,6 @@ namespace tl::sge::e {
 			void Input(int type, LPARAM lParam);
 			void Scroll(int type, LPARAM lParam);
 		}
-		namespace Keyboard {
-			//more info in game.h
-			inline const int size = 256;
-			inline KeyData keyboardData[256];
-		}
 		
 		void handleInput();
 		void resetInput();
@@ -52,7 +35,9 @@ namespace tl::sge::e {
 		void clearScreen(Color c);
 	}
 	namespace functions {
-		void addStatic(void (*Func)(void));
+		//0-5 order slots, 3 is used for usercode default
+		//0 and 5 are defaults for engine
+		void addStatic(void (*Func)(void), int order = 3);
 		void runAll();
 	}
 	namespace mouseListeners {

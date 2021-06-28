@@ -64,18 +64,21 @@ namespace tl {
 			Rect buttonArea;
 			Click click;
 		};
-		struct ButtonHold {
+		/*struct ButtonHold {
 			Rect buttonArea;
 			Point location;
 			//will return once up when mouse is lifted or moved out of area
 			bool down;
-		};
+		};*/
 		namespace Create {
 			void MouseListener(void (*Func)(Click c));
-			//void MouseListener(void (*Func)(Click c), sge::Rect area); //TODO toimivaks
+			//void MouseListener(void (*Func)(Click c), sge::Rect area); //TODO make area based listener
+
 			void Grid(sge::Rect area, int width, int height, void (*Func)(GridClick c));
 			void Button(sge::Rect area, void (*Func)(ButtonClick c));
+			//runs every tick
 			void Func(void (*Func)(void));
+			//TODO add simpler just bool buttons since that's most needed
 			//void ButtomSpammable(sge::Rect )
 			//void HoldButton(sge::Rect area, void (*Func)(ButtonHold p));
 			//void ButtonToggle(sge::Rect area);

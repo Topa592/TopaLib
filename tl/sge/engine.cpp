@@ -6,7 +6,8 @@
 #include "../tlwindows.h"
 #include <windowsx.h>
 #include <string>
-#include "buttons.h"
+#include "sgeinit.h"
+#include "input.h"
 
 LRESULT CALLBACK tl::sge::e::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	switch (uMsg) {
@@ -14,25 +15,25 @@ LRESULT CALLBACK tl::sge::e::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
 		tl::windowProc::resize(lParam);
 		return 0;
 	case WM_LBUTTONDOWN:
-		e::MouseInput(0, lParam);
+		e::input::mouseInput(0, lParam);
 		return 0;
 	case WM_MBUTTONDOWN:
-		e::MouseInput(1, lParam);
+		e::input::mouseInput(1, lParam);
 		return 0;
 	case WM_RBUTTONDOWN:
-		e::MouseInput(2, lParam);
+		e::input::mouseInput(2, lParam);
 		return 0;
 	case WM_LBUTTONUP:
-		e::MouseInput(3, lParam);
+		e::input::mouseInput(3, lParam);
 		return 0;
 	case WM_MBUTTONUP:
-		e::MouseInput(4, lParam);
+		e::input::mouseInput(4, lParam);
 		return 0;
 	case WM_RBUTTONUP:
-		e::MouseInput(5, lParam);
+		e::input::mouseInput(5, lParam);
 		return 0;
 	case WM_MOUSEWHEEL:
-		e::MouseScroll(wParam, lParam);
+		e::input::mouseScroll(wParam, lParam);
 		return 0;
 	case WM_MOUSEMOVE:
 		e::MouseInput(8, lParam);
@@ -48,7 +49,7 @@ void tl::sge::e::mainLoop() {
 	tl::utility::ConsistantSleep sleep;
 	tl::utility::Timer fpsMeter;
 	int frameCount = 0;
-	e::InitButtons();
+	sge::init::All();
 	while (!e::done) {
 		sleep.Start();
 		e::Inputs::resetInput();
@@ -64,7 +65,7 @@ void tl::sge::e::mainLoop() {
 		e::Graphics::clearScreen(e::Graphics::backGroundColor);
 		//start
 
-		e::Inputs::handleInput();
+		//e::Inputs::handleInput();
 		e::functions::runAll();
 		
 		//end

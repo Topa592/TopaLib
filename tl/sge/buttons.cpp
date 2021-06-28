@@ -1,4 +1,5 @@
 #include "buttons.h"
+#include "sgeinit_in.h"
 #include "sge.h"
 #include "core.h"
 #include <vector>
@@ -89,9 +90,9 @@ namespace {
 	}
 }
 
-void tl::sge::e::InitButtons() {
-	sge::Create::Func(drawButtons);
-	sge::Create::Func(drawGrids);
+void tl::sge::init::Buttons() {
+	e::functions::addStatic(drawButtons, 1);
+	e::functions::addStatic(drawGrids, 1);
 	sge::Create::MouseListener(processButtons);
 	sge::Create::MouseListener(processGrids);
 }

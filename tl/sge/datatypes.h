@@ -13,9 +13,19 @@ namespace tl {
 				int height;
 				void (*Func)(sge::GridClick c);
 			};
-			struct ButtonHoldData {
+			/*struct ButtonHoldData {
 				tl::sge::Rect area;
 				void (*Func)(sge::ButtonHold c);
+			};*/
+			struct ClickData {
+				bool clicked = false;
+				Click click;
+				void reset() {
+					clicked = false;
+				}
+				ClickData(Clicktype c) {
+					click.type = c;
+				}
 			};
 		}
 	}

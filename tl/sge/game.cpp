@@ -1,4 +1,4 @@
-#include "game_in.h"
+#include "datatypes.h"
 #include "sge.h"
 #include <Windows.h>
 #include "../Graphics.h"
