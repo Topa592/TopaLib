@@ -2,6 +2,6 @@
 #include "sgeinit_in.h"
 
 void tl::sge::init::All() {
-	init::Buttons();
 	init::Input();
+	init::Buttons();	
 }

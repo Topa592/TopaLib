@@ -6,28 +6,6 @@
 namespace tl::sge::e {
 	LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 	
-	namespace Inputs {
-		namespace mouse {
-			void processActions();
-			inline const int size = 8;
-			//more info in game.h Clicktype
-			inline ClickData data[8] = { 
-				Clicktype::LDown,
-				Clicktype::MDown,
-				Clicktype::RDown,
-				Clicktype::LUp,
-				Clicktype::MUp,
-				Clicktype::RUp,
-				Clicktype::ScrollDown,
-				Clicktype::ScrollUp
-			};
-			void Input(int type, LPARAM lParam);
-			void Scroll(int type, LPARAM lParam);
-		}
-		
-		void handleInput();
-		void resetInput();
-	}
 	void mainLoop();
 	
 	namespace Graphics {
@@ -49,9 +27,6 @@ namespace tl::sge::e {
 		tl::sge::Click getLatestClick(const tl::sge::Clicktype c);
 	}
 	inline bool done = false;
-	//never use for scrolling since scrolling input works differently
-	void MouseInput(const int& type, LPARAM lParam);
-	void MouseScroll(const WPARAM& wParam, const LPARAM& lParam);
 
 	auto getClientPos()->tl::sge::Point;
 	auto lParamToSGEPoint(LPARAM lParam)->tl::sge::Point;

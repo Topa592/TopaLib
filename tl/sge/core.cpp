@@ -1,26 +1,12 @@
 #include "core.h"
 #include "../tldirect2d.h"
 
-void tl::sge::e::Inputs::mouse::Input(int type, LPARAM lParam) {
-	ClickData& c = e::Inputs::mouse::data[type];
-	if (c.clicked == true) return;
-	c.clicked = true;
-	c.click.location = e::lParamToSGEPoint(lParam);
-}
-
-void tl::sge::e::Inputs::mouse::Scroll(int type, LPARAM lParam) {
-	ClickData& c = e::Inputs::mouse::data[type];
-	if (c.clicked == true) return;
-	c.clicked = true;
-	c.click.location = sge::e::scrollToSGEPoint(lParam);
-}
-
 using namespace tl::sge;
 
 namespace tl::sge::e::functions {
 	namespace impl {
 		namespace {
-			constexpr int size = 5;
+			constexpr int size = 6;
 			//std::vector<void (*)(void)> funcs;
 			std::vector<void (*)(void)> funcs[size];
 		}

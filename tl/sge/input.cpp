@@ -46,10 +46,7 @@ void reset() {
 }
 
 void processInput() {
-	for (const ClickData& c : impl::data) {
-		if (!c.clicked) continue;
-		tl::sge::e::mouseListeners::runAll(c.click);
-	}
+	tl::sge::e::input::mouseFuncForEach(tl::sge::e::mouseListeners::runAll);
 }
 
 void tl::sge::init::Input() {
@@ -62,7 +59,8 @@ void tl::sge::e::input::mouseInput(int type, LPARAM lParam) {
 	impl::rawLastInputs->ifChanged = true;
 	impl::rawLastInputs->lParam = lParam;
 	//first
-	ClickData& c = e::Inputs::mouse::data[type];
+	if (Clicktype(type) == Clicktype::None) return;
+	ClickData& c = impl::data[type];
 	if (c.clicked == true) return;
 	c.clicked = true;
 	c.click.location = e::lParamToSGEPoint(lParam);
@@ -78,7 +76,7 @@ void tl::sge::e::input::mouseScroll(WPARAM wParam, LPARAM lParam) {
 	impl::rawLastInputs->ifChanged = true;
 	impl::rawLastInputs->lParam = lParam;
 	//first
-	ClickData& c = e::Inputs::mouse::data[type];
+	ClickData& c = impl::data[type];
 	if (c.clicked == true) return;
 	c.clicked = true;
 	c.click.location = sge::e::scrollToSGEPoint(lParam);

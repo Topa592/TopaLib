@@ -36,7 +36,7 @@ LRESULT CALLBACK tl::sge::e::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
 		e::input::mouseScroll(wParam, lParam);
 		return 0;
 	case WM_MOUSEMOVE:
-		e::MouseInput(8, lParam);
+		e::input::mouseInput(8, lParam);
 		return 0;
 	case WM_DESTROY: { PostQuitMessage(0); return 0; }
 	}
@@ -52,7 +52,6 @@ void tl::sge::e::mainLoop() {
 	sge::init::All();
 	while (!e::done) {
 		sleep.Start();
-		e::Inputs::resetInput();
 		tl::graphics::BeginDraw();
 		while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
 			if (message.message == WM_QUIT) {
@@ -65,7 +64,6 @@ void tl::sge::e::mainLoop() {
 		e::Graphics::clearScreen(e::Graphics::backGroundColor);
 		//start
 
-		//e::Inputs::handleInput();
 		e::functions::runAll();
 		
 		//end
@@ -78,30 +76,6 @@ void tl::sge::e::mainLoop() {
 		}
 		sleep.End(sge::Engine::Tickrate);
 	}
-}
-
-void tl::sge::e::Inputs::mouse::processActions() { //HACK needs more optimizing to support multiple clicks a tick
-	tl::graphics::setBrush(1, 0, 0, 1);
-	for (int i = 0; i < e::Inputs::mouse::size; i++) {
-		const ClickData& c = e::Inputs::mouse::data[i];
-		if (c.clicked == false) continue;
-		e::mouseListeners::runAll(c.click);
-	}
-}
-
-void tl::sge::e::MouseInput(const int& type, LPARAM lParam) {
-	e::Inputs::mouse::Input(type, lParam);
-	e::Mouse::update(Clicktype(type), lParam);
-}
-
-void tl::sge::e::MouseScroll(const WPARAM& wParam, const LPARAM& lParam) {
-	int latestLength = GET_WHEEL_DELTA_WPARAM(wParam);
-	int type = 0;
-	if (latestLength < 0) type = 6;
-	else if (latestLength > 0) type = 7;
-	else return;
-	e::Inputs::mouse::Scroll(type, lParam);
-	e::Mouse::update(tl::sge::Clicktype(type), lParam);
 }
 
 auto tl::sge::e::lParamToSGEPoint(LPARAM lParam)->tl::sge::Point {
@@ -123,16 +97,6 @@ auto tl::sge::e::scrollToSGEPoint(LPARAM lParam) -> tl::sge::Point {
 	p.x -= windowpos.x;
 	p.y -= windowpos.y;
 	return p;
-}
-
-void tl::sge::e::Inputs::handleInput() {
-	e::Inputs::mouse::processActions();
-}
-
-void tl::sge::e::Inputs::resetInput() {
-	for (ClickData& c : Inputs::mouse::data) {
-		c.reset();
-	}
 }
 
 void tl::sge::e::Graphics::clearScreen(Color c) {
