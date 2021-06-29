@@ -78,7 +78,12 @@ namespace tl {
 			void Button(sge::Rect area, void (*Func)(ButtonClick c));
 			//runs every tick
 			void Func(void (*Func)(void));
-			//TODO add simpler just bool buttons since that's most needed
+			//TODO add simpler just bool/function call buttons since that's most needed
+			//like for HoldButton having all different types of inputs is going to be confusing
+			//to use but just having it call everytime it is holded is far simpler for usercode
+			
+			//TODO add proper customization to buttons and grids
+			
 			//void ButtomSpammable(sge::Rect )
 			//void HoldButton(sge::Rect area, void (*Func)(ButtonHold p));
 			//void ButtonToggle(sge::Rect area);

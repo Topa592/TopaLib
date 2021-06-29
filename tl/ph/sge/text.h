@@ -3,6 +3,8 @@
 #include <string>
 namespace tl {
 	namespace sge {
+		//TODO make these work
+
 		enum class Fontsize {
 			small = 0,
 			medium = 1,
