@@ -1,4 +1,5 @@
 #pragma once
+#include "game.h"
 #include <Windows.h>
 //
 // Lower level access to windows api's messageloop
