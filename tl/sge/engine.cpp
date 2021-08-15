@@ -4,12 +4,14 @@
 #include "../Utility.h"
 #include "../Graphics.h"
 #include "../tlwindows.h"
+#include "sgeWindowsApi_in.h"
 #include <windowsx.h>
 #include <string>
 #include "sgeinit.h"
 #include "input.h"
 
 LRESULT CALLBACK tl::sge::e::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+	sge::wa::Send(hwnd, uMsg, wParam, lParam);
 	switch (uMsg) {
 	case WM_SIZE:
 		tl::windowProc::resize(lParam);
@@ -53,6 +55,7 @@ void tl::sge::e::mainLoop() {
 	while (!e::done) {
 		sleep.Start();
 		tl::graphics::BeginDraw();
+		e::Graphics::clearScreen(e::Graphics::backGroundColor);
 		while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
 			if (message.message == WM_QUIT) {
 				e::done = true;
@@ -61,7 +64,6 @@ void tl::sge::e::mainLoop() {
 				DispatchMessage(&message);
 			}
 		}
-		e::Graphics::clearScreen(e::Graphics::backGroundColor);
 		//start
 
 		e::functions::runAll();
